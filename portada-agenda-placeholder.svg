@@ -1,0 +1,13 @@
+<!-- PLACEHOLDER de la portada de la Agenda Instrumental.
+     Sustituye este archivo por la foto/diseño real de la portada
+     (formato recomendado: .jpg, orientación vertical, relación 3:4).
+     Si usas otro nombre de archivo, actualiza el atributo "src" de la
+     imagen en index.html (sección "Producto destacado") y en
+     producto.html (sección "Hero"). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <rect width="300" height="400" fill="oklch(99% 0.006 90)"/>
+  <rect x="1" y="1" width="298" height="398" fill="none" stroke="oklch(83% 0.06 300)" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="150" y="185" font-family="Poppins, sans-serif" font-size="40" fill="oklch(83% 0.06 300)" text-anchor="middle">♪</text>
+  <text x="150" y="220" font-family="Quicksand, sans-serif" font-size="15" font-weight="600" fill="oklch(48% 0.06 318)" text-anchor="middle">Portada de la agenda</text>
+  <text x="150" y="242" font-family="Quicksand, sans-serif" font-size="12" fill="oklch(48% 0.06 318)" text-anchor="middle">(sustituir por foto real)</text>
+</svg>
