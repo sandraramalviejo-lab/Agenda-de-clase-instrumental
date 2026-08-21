@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu Viaje Musical — Materiales para alumnos y profesores de música</title>
-  <meta name="description" content="Tu Viaje Musical crea materiales educativos para el aprendizaje musical: agendas de curso, repertorio y recursos para alumnos de cualquier instrumento y para sus profesores.">
+  <title>Agenda Instrumental — Tu Viaje Musical</title>
+  <meta name="description" content="Agenda Instrumental: la agenda de curso para alumnos de música de cualquier instrumento, con calendario, repertorio, conciertos y seguimiento semanal.">
 
   <!-- Tipografías de marca: Poppins (títulos) y Quicksand (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,77 +17,183 @@
 
   <!-- ============ NAV ============ -->
   <nav class="nav">
-    <div class="nav__brand">
+    <a href="index.html" class="nav__brand">
       <!-- EDITAR: sustituye assets/images/logo-placeholder.svg por tu logo real -->
       <img class="nav__logo is-placeholder" src="assets/images/logo-placeholder.svg" alt="Logo de Tu Viaje Musical">
       <span class="nav__wordmark">Tu Viaje Musical</span>
-    </div>
+    </a>
     <div class="nav__actions">
       <!-- EDITAR: cuando tengas tu email real, cámbialo aquí Y en el footer, más abajo -->
       <a href="mailto:hola@tuviajemusical.com" class="nav__link">Contacto</a>
-      <a href="producto.html" class="btn btn--outline">Agenda</a>
+      <a href="#comprar" class="btn btn--outline">Comprar</a>
     </div>
   </nav>
 
   <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="hero__blob hero__blob--lilac" aria-hidden="true"></div>
-      <div class="hero__blob hero__blob--rose" aria-hidden="true"></div>
-      <span class="hero__glyph hero__glyph--note1" aria-hidden="true">♪</span>
-      <span class="hero__glyph hero__glyph--star" aria-hidden="true">✦</span>
-      <span class="hero__glyph hero__glyph--note2" aria-hidden="true">♫</span>
+    <!-- ============ HERO DE PRODUCTO ============ -->
+    <section class="product-hero">
+      <span class="product-hero__sparkle" aria-hidden="true">✦</span>
 
-      <div class="hero__content">
-        <!-- EDITAR: nombre de marca y frase de propuesta general -->
-        <h1 class="hero__title">Tu Viaje Musical</h1>
-        <p class="hero__lead">Materiales pensados para acompañar el aprendizaje musical, curso a curso — para alumnos de cualquier instrumento y para quienes les enseñan.</p>
+      <div class="product-hero__img-frame">
+        <!-- EDITAR: sustituye assets/images/portada-agenda-placeholder.svg
+             por la foto real de la portada de la agenda -->
+        <img class="is-placeholder" src="assets/images/portada-agenda-placeholder.svg" alt="Portada de la Agenda Instrumental">
+      </div>
+
+      <div class="product-hero__body">
+        <!-- EDITAR: curso al que corresponde esta edición -->
+        <span class="eyebrow">Curso 2026/2027</span>
+        <h1 class="product-hero__title">Agenda Instrumental</h1>
+        <!-- EDITAR: descripción del producto -->
+        <p class="product-hero__desc">La agenda de curso para alumnos de música, pensada para cualquier instrumento: calendario, repertorio, conciertos y seguimiento semanal en un mismo sitio.</p>
+        <!-- El precio se define una sola vez, en la sección "Comprar" más abajo -->
+        <a href="#comprar" class="btn btn--primary btn--large">Comprar — <span class="precio">20 €</span></a>
       </div>
     </section>
 
-    <!-- ============ PRODUCTO DESTACADO ============ -->
+    <!-- ============ QUÉ INCLUYE ============ -->
     <section>
-      <div class="card featured-card">
-        <span class="eyebrow">Disponible ahora</span>
+      <h2 class="section-title">Qué incluye</h2>
+      <div class="feature-list">
 
-        <div class="featured-card__img">
-          <!-- EDITAR: sustituye assets/images/portada-agenda-placeholder.svg
-               por la foto real de la portada de la agenda -->
-          <img class="is-placeholder" src="assets/images/portada-agenda-placeholder.svg" alt="Portada de la Agenda Instrumental">
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+          </div>
+          <div>
+            <h3 class="feature__title">Calendario del curso</h3>
+            <!-- EDITAR: región/comunidad si aplica -->
+            <p class="feature__desc">De septiembre a junio, mes a mes, con festivos de Andalucía marcados.</p>
+          </div>
         </div>
 
-        <h2 class="featured-card__title">Agenda Instrumental</h2>
-        <!-- EDITAR: descripción corta del producto destacado -->
-        <p class="featured-card__desc">La agenda del curso para alumnos de música de cualquier instrumento: calendario, repertorio y espacio para tus conciertos.</p>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><line x1="12" y1="12" x2="12" y2="7"/><line x1="12" y1="12" x2="16" y2="14"/></svg>
+          </div>
+          <div>
+            <h3 class="feature__title">Horario semanal</h3>
+            <p class="feature__desc">Espacio para organizar tus clases de instrumento y otras asignaturas.</p>
+          </div>
+        </div>
 
-        <div class="text-center">
-          <a href="producto.html" class="btn btn--primary">Ver la agenda</a>
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
+          </div>
+          <div>
+            <h3 class="feature__title">Hojas de clase semanales</h3>
+            <p class="feature__desc">Un espacio para anotar, junto a tu profesor/a, qué trabajar antes de la próxima clase.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature__icon"><span class="feature__glyph" aria-hidden="true">♪</span></div>
+          <div>
+            <h3 class="feature__title">Seguimiento de repertorio</h3>
+            <p class="feature__desc">Piezas, autores y fechas de inicio y fin de cada obra trabajada.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature__icon"><span class="feature__glyph feature__glyph--gold" aria-hidden="true">✦</span></div>
+          <div>
+            <h3 class="feature__title">Conciertos y audiciones</h3>
+            <p class="feature__desc">Un lugar fijo para anotar fechas, lugares y exámenes importantes.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg>
+          </div>
+          <div>
+            <h3 class="feature__title">Espacio para rellenar recursos de estudio junto con tu profesor/a</h3>
+            <p class="feature__desc">Fichas para trabajar pasajes difíciles y preparar el escenario.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><rect x="4" y="10" width="3" height="8"/><rect x="10.5" y="5" width="3" height="13"/><rect x="17" y="13" width="3" height="5"/></svg>
+          </div>
+          <div>
+            <h3 class="feature__title">Escucha y autoevaluación</h3>
+            <p class="feature__desc">Actividades de escucha activa y seguimiento semanal de objetivos.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ PARA QUIÉN ES ============ -->
+    <section>
+      <div class="card who-card">
+        <h2 class="who-card__title">Para quién es</h2>
+        <!-- EDITAR: ajusta este texto si cambia el público objetivo -->
+        <p class="who-card__text">Está diseñada especialmente para alumnos de 3º y 4º de Enseñanzas Básicas en Andalucía, cuyo calendario y curso siguen esta edición al detalle. Aun así, cualquier alumno de música, de cualquier instrumento y nivel, le sacará partido — y es también un buen recurso para profesores que quieran recomendarla o usarla en su propia enseñanza.</p>
+      </div>
+    </section>
+
+    <!-- ============ GALERÍA "POR DENTRO" ============ -->
+    <section>
+      <h2 class="section-title">Por dentro</h2>
+      <!-- EDITAR: sustituye las 4 imágenes de assets/images/galeria-*.svg
+           por fotos reales de páginas interiores de la agenda -->
+      <div class="gallery">
+        <div class="gallery__item">
+          <img class="is-placeholder" src="assets/images/galeria-1-placeholder.svg" alt="Página interior — calendario mensual">
+        </div>
+        <div class="gallery__item">
+          <img class="is-placeholder" src="assets/images/galeria-2-placeholder.svg" alt="Página interior — repertorio del curso">
+        </div>
+        <div class="gallery__item">
+          <img class="is-placeholder" src="assets/images/galeria-3-placeholder.svg" alt="Página interior — seguimiento semanal">
+        </div>
+        <div class="gallery__item">
+          <img class="is-placeholder" src="assets/images/galeria-4-placeholder.svg" alt="Página interior — conciertos y audiciones">
         </div>
       </div>
     </section>
 
-    <!-- ============ PRÓXIMAMENTE ============ -->
-    <section>
-      <div class="content-wrap text-center">
-        <h2 class="section-title" style="margin-bottom:14px;">Próximamente</h2>
-        <!-- EDITAR: texto genérico sobre futuros productos -->
-        <p style="font-size:16px; line-height:1.6; color:var(--ink-soft);">Estamos preparando nuevos materiales para seguir acompañando tu viaje musical. Muy pronto habrá más por descubrir.</p>
-        <div class="chips">
-          <!-- EDITAR: estas etiquetas son solo un avance, sin enlace todavía -->
-          <span class="chip">Repertorio</span>
-          <span class="chip">Lectura a vista</span>
-          <span class="chip">Improvisación</span>
-        </div>
+    <!-- ============ COMPRAR ============ -->
+    <section id="comprar">
+      <div class="buy-box">
+        <!-- EDITAR: curso de esta edición -->
+        <p class="buy-box__label">Agenda Instrumental · Curso 2026/2027</p>
+        <p class="buy-box__price precio">20 €</p>
+        <a href="https://www.lulu.com/shop/sandra-ramal/agenda-instrumental/paperback/product-rmkyp9z.html?q=Agenda+Instrumental&page=1&pageSize=4" class="btn btn--on-violet" target="_blank" rel="noopener">Comprar en Lulu</a>
+        <!-- El envío varía según el país/región de destino, así que se muestra aparte en vez de sumarlo al precio -->
+        <p class="buy-box__note">+ gastos de envío (se calculan en Lulu según destino)</p>
       </div>
     </section>
 
-    <!-- ============ SOBRE MÍ ============ -->
+    <!-- ============ FAQ ============ -->
     <section>
-      <div class="about">
-        <span class="about__glyph" aria-hidden="true">✦</span>
-        <h2 class="about__title">Sobre mí</h2>
-        <!-- EDITAR: texto de ejemplo — personalízalo con tu propia historia -->
-        <p class="about__text">Soy profesora de música y creé Tu Viaje Musical porque quería que mis alumnos tuvieran herramientas bonitas y útiles para organizar su aprendizaje, curso tras curso. Cada material nace de necesidades reales de clase, pensado para acompañar — sin sustituir — el trabajo con tu profesor o profesora.</p>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Sirve para cualquier instrumento?</summary>
+          <p>Sí. Está pensada para cualquier instrumento, no solo piano — el contenido se organiza por curso y repertorio, no por instrumento concreto.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Para qué edades es?</summary>
+          <p>Tanto para niños como para adultos que estudian música. El formato se adapta bien a distintos niveles.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿De qué curso escolar es esta edición?</summary>
+          <p>Esta edición cubre el curso 2026/2027, de septiembre a junio.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué tamaño tiene?</summary>
+          <!-- EDITAR: completa con el formato y dimensiones exactas -->
+          <p>[completar: formato y dimensiones exactas]</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Hacéis envíos?</summary>
+          <!-- EDITAR: completa con zonas de envío y plazos -->
+          <p>[completar: zonas de envío y plazos]</p>
+        </details>
       </div>
     </section>
   </main>
