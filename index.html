@@ -1,102 +1,573 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu Viaje Musical — Materiales para alumnos y profesores de música</title>
-  <meta name="description" content="Tu Viaje Musical crea materiales educativos para el aprendizaje musical: agendas de curso, repertorio y recursos para alumnos de cualquier instrumento y para sus profesores.">
+/* ============================================================
+   TU VIAJE MUSICAL — Hoja de estilos
+   ============================================================
+   Este archivo controla el aspecto de TODO el sitio (colores,
+   tipografías, tamaños, espaciados). Está dividido en bloques
+   con títulos en mayúsculas para que sea fácil encontrar lo
+   que buscas con Ctrl+F.
 
-  <!-- Tipografías de marca: Poppins (títulos) y Quicksand (texto) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+   Si solo quieres cambiar TEXTOS o FOTOS, no necesitas tocar
+   este archivo — ve a index.html o producto.html.
 
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+   Si quieres cambiar un COLOR de toda la web, cámbialo una
+   sola vez aquí abajo, en ":root", y se actualizará en todas
+   partes automáticamente.
+   ============================================================ */
 
-  <!-- ============ NAV ============ -->
-  <nav class="nav">
-    <div class="nav__brand">
-      <!-- EDITAR: sustituye assets/images/logo-placeholder.svg por tu logo real -->
-      <img class="nav__logo is-placeholder" src="assets/images/logo-placeholder.svg" alt="Logo de Tu Viaje Musical">
-      <span class="nav__wordmark">Tu Viaje Musical</span>
-    </div>
-    <a href="producto.html" class="btn btn--outline">Agenda</a>
-  </nav>
+/* ---------- 1. VARIABLES DE MARCA (colores, radios) ---------- */
+:root {
+  /* Colores — tal cual el diseño original de la marca */
+  --bg: oklch(98% 0.012 300);          /* fondo general */
+  --surface: oklch(99% 0.006 90);      /* fondo de tarjetas */
+  --ink: oklch(30% 0.09 318);          /* texto principal */
+  --ink-soft: oklch(48% 0.06 318);     /* texto secundario */
+  --lilac: oklch(83% 0.06 300);        /* acento lavanda */
+  --rose: oklch(85% 0.055 358);        /* acento rosa */
+  --gold: oklch(78% 0.1 85);           /* acento mostaza */
+  --violet: oklch(45% 0.13 305);       /* violeta de marca (botones) */
+  --violet-dark: oklch(38% 0.13 308);  /* violeta oscuro (texto sobre crema) */
+  --cream: oklch(98% 0.01 300);        /* texto/fondo crema sobre violeta */
 
-  <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="hero__blob hero__blob--lilac" aria-hidden="true"></div>
-      <div class="hero__blob hero__blob--rose" aria-hidden="true"></div>
-      <span class="hero__glyph hero__glyph--note1" aria-hidden="true">♪</span>
-      <span class="hero__glyph hero__glyph--star" aria-hidden="true">✦</span>
-      <span class="hero__glyph hero__glyph--note2" aria-hidden="true">♫</span>
+  /* Radios reutilizados en toda la web */
+  --radius-pill: 99px;
+  --radius-card: 26px;
+  --radius-img: 20px;
 
-      <div class="hero__content">
-        <!-- EDITAR: nombre de marca y frase de propuesta general -->
-        <h1 class="hero__title">Tu Viaje Musical</h1>
-        <p class="hero__lead">Materiales pensados para acompañar el aprendizaje musical, curso a curso — para alumnos de cualquier instrumento y para quienes les enseñan.</p>
-      </div>
-    </section>
+  /* Sombras reutilizadas */
+  --shadow-card: 0 20px 50px -30px oklch(30% 0.09 318 / 0.4);
+  --shadow-hero-img: 0 24px 50px -28px oklch(30% 0.09 318 / 0.45);
 
-    <!-- ============ PRODUCTO DESTACADO ============ -->
-    <section>
-      <div class="card featured-card">
-        <span class="eyebrow">Disponible ahora</span>
+  /* Ancho máximo del contenido (columna central) */
+  --content-width: 560px;
+}
 
-        <div class="featured-card__img">
-          <!-- EDITAR: sustituye assets/images/portada-agenda-placeholder.svg
-               por la foto real de la portada de la agenda -->
-          <img class="is-placeholder" src="assets/images/portada-agenda-placeholder.svg" alt="Portada de la Agenda Instrumental">
-        </div>
+/* ---------- 2. RESET BÁSICO ---------- */
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.75;
+}
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+summary::marker {
+  color: var(--violet);
+}
+button {
+  font-family: inherit;
+}
 
-        <h2 class="featured-card__title">Agenda Instrumental</h2>
-        <!-- EDITAR: descripción corta del producto destacado -->
-        <p class="featured-card__desc">La agenda del curso para alumnos de música de cualquier instrumento: calendario, repertorio y espacio para tus conciertos.</p>
+/* ---------- 3. NAVEGACIÓN (cabecera) ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  position: sticky;
+  top: 0;
+  background: color-mix(in oklch, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+}
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav__logo {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: block;
+}
+.nav__wordmark {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+/* Agrupa los enlaces de la derecha del menú (Contacto + botón principal)
+   para que quepan bien uno junto al otro, también en móvil. */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+/* Enlace de texto discreto del menú (p.ej. "Contacto"), más ligero que
+   el botón principal para no competir visualmente con él. */
+.nav__link {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
 
-        <div class="text-center">
-          <a href="producto.html" class="btn btn--primary">Ver la agenda</a>
-        </div>
-      </div>
-    </section>
+/* ---------- 4. BOTONES ---------- */
+.btn {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+/* Botón principal: fondo violeta, texto crema (CTAs de compra) */
+.btn--primary {
+  background: var(--violet);
+  color: var(--cream);
+  font-size: 16px;
+  padding: 14px 32px;
+}
+/* Botón grande, para héroes */
+.btn--large {
+  font-size: 17px;
+  padding: 16px 40px;
+}
+/* Botón secundario: solo borde, usado en el nav */
+.btn--outline {
+  background: transparent;
+  color: var(--violet-dark);
+  border: 1.5px solid var(--violet);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+}
+/* Botón sobre fondo violeta (sección "Comprar") */
+.btn--on-violet {
+  background: var(--cream);
+  color: var(--violet-dark);
+  font-size: 16px;
+  padding: 15px 36px;
+}
 
-    <!-- ============ PRÓXIMAMENTE ============ -->
-    <section>
-      <div class="content-wrap text-center">
-        <h2 class="section-title" style="margin-bottom:14px;">Próximamente</h2>
-        <!-- EDITAR: texto genérico sobre futuros productos -->
-        <p style="font-size:16px; line-height:1.6; color:var(--ink-soft);">Estamos preparando nuevos materiales para seguir acompañando tu viaje musical. Muy pronto habrá más por descubrir.</p>
-        <div class="chips">
-          <!-- EDITAR: estas etiquetas son solo un avance, sin enlace todavía -->
-          <span class="chip">Repertorio</span>
-          <span class="chip">Lectura a vista</span>
-          <span class="chip">Improvisación</span>
-        </div>
-      </div>
-    </section>
+/* ---------- 5. SECCIONES / CONTENEDORES ---------- */
+section {
+  padding: 8px 24px 56px;
+  position: relative;
+}
+.section-title {
+  font-size: 24px;
+  text-align: center;
+  margin: 0 0 24px;
+}
+.content-wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+.text-center {
+  text-align: center;
+}
 
-    <!-- ============ SOBRE MÍ ============ -->
-    <section>
-      <div class="about">
-        <span class="about__glyph" aria-hidden="true">✦</span>
-        <h2 class="about__title">Sobre mí</h2>
-        <!-- EDITAR: texto de ejemplo — personalízalo con tu propia historia -->
-        <p class="about__text">Soy profesora de música y creé Tu Viaje Musical porque quería que mis alumnos tuvieran herramientas bonitas y útiles para organizar su aprendizaje, curso tras curso. Cada material nace de necesidades reales de clase, pensado para acompañar — sin sustituir — el trabajo con tu profesor o profesora.</p>
-      </div>
-    </section>
-  </main>
+/* ---------- 6. HERO (Inicio) ---------- */
+.hero {
+  padding: 56px 24px 64px;
+  overflow: hidden;
+}
+.hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(18px);
+  pointer-events: none;
+}
+.hero__blob--lilac {
+  top: -60px;
+  right: -80px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, var(--lilac), transparent 70%);
+  opacity: 0.8;
+}
+.hero__blob--rose {
+  bottom: -40px;
+  left: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--rose), transparent 70%);
+  opacity: 0.7;
+}
+.hero__glyph {
+  position: absolute;
+  pointer-events: none;
+}
+.hero__glyph--note1 { top: 40px; left: 20px; font-size: 28px; color: var(--lilac); opacity: 0.9; transform: rotate(-12deg); }
+.hero__glyph--star   { top: 110px; right: 36px; font-size: 22px; color: var(--gold); opacity: 0.8; }
+.hero__glyph--note2 { bottom: 30px; right: 60px; font-size: 34px; color: var(--rose); opacity: 0.7; transform: rotate(8deg); }
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
-    <div class="site-footer__brand">Tu Viaje Musical</div>
-    <!-- EDITAR: pon aquí tu email y usuario de Instagram reales -->
-    <p class="site-footer__line">hola@tuviajemusical.com <!-- PLACEHOLDER: email real --></p>
-    <p class="site-footer__line">@tuviajemusical <!-- PLACEHOLDER: usuario de Instagram real --></p>
-    <p class="site-footer__year">© <span id="anio-actual">2026</span> Tu Viaje Musical</p>
-  </footer>
+.hero__content {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero__title {
+  font-size: clamp(30px, 7vw, 44px);
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin: 0 0 18px;
+}
+.hero__lead {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
 
-  <script src="js/main.js"></script>
-</body>
-</html>
+/* ---------- 7. HERO de producto ---------- */
+.product-hero {
+  padding: 28px 24px 40px;
+  overflow: hidden;
+}
+.product-hero__sparkle {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-size: 24px;
+  color: var(--gold);
+  opacity: 0.8;
+}
+.product-hero__img-frame {
+  position: relative;
+  max-width: 340px;
+  margin: 0 auto 24px;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  box-shadow: var(--shadow-hero-img);
+}
+.product-hero__body {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+.eyebrow {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  display: block;
+  margin-bottom: 10px;
+}
+.product-hero__title {
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.15;
+  margin: 10px 0 12px;
+}
+.product-hero__desc {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+
+/* ---------- 8. TARJETA de producto destacado (Inicio) ---------- */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+.featured-card {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 28px 22px 32px;
+}
+.featured-card__img {
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 16px 0 20px;
+  aspect-ratio: 3 / 4;
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.featured-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.featured-card__title {
+  font-size: 24px;
+  margin: 0 0 10px;
+  text-align: center;
+}
+.featured-card__desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+  text-align: center;
+}
+
+/* ---------- 9. CHIPS ("Próximamente") ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.chip {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--lilac);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- 10. "SOBRE MÍ" ---------- */
+.about {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  text-align: center;
+}
+.about__glyph {
+  font-size: 26px;
+  color: var(--gold);
+}
+.about__title {
+  font-size: 22px;
+  margin: 14px 0 14px;
+}
+.about__text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ---------- 11. LISTA "QUÉ INCLUYE" ---------- */
+.feature-list {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.feature {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.feature__icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--lilac);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature__icon svg {
+  width: 20px;
+  height: 20px;
+}
+.feature__glyph {
+  font-size: 20px;
+  color: var(--violet);
+}
+.feature__glyph--gold {
+  font-size: 18px;
+  color: var(--gold);
+}
+.feature__title {
+  font-size: 16px;
+  margin: 6px 0 4px;
+}
+.feature__desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ---------- 12. "PARA QUIÉN ES" ---------- */
+.who-card {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 30px 24px;
+  text-align: center;
+}
+.who-card__title {
+  font-size: 22px;
+  margin: 0 0 12px;
+}
+.who-card__text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ---------- 13. GALERÍA "POR DENTRO" ---------- */
+.gallery {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 4px 24px 16px;
+  scroll-snap-type: x mandatory;
+  max-width: 100%;
+  /* Scrollbar discreta (Firefox) */
+  scrollbar-width: thin;
+}
+.gallery__item {
+  width: 220px;
+  height: 290px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- 14. SECCIÓN "COMPRAR" ---------- */
+.buy-box {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--violet);
+  border-radius: 28px;
+  padding: 36px 24px;
+  color: var(--cream);
+}
+.buy-box__label {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin: 0 0 8px;
+}
+.buy-box__price {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  margin: 0 0 20px;
+}
+.buy-box__note {
+  font-size: 12px;
+  opacity: 0.85;
+  margin: 14px 0 0;
+}
+
+/* ---------- 15. FAQ (acordeón nativo) ---------- */
+.faq-list {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.faq-item {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+.faq-item summary {
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+.faq-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 10px 0 0;
+}
+
+/* ---------- 16. FOOTER ---------- */
+.site-footer {
+  padding: 36px 24px 44px;
+  border-top: 1px solid var(--lilac);
+  text-align: center;
+}
+.site-footer__brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.site-footer__line {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+/* El email ahora es un enlace (mailto), no texto suelto — se destaca un
+   poco para que se note que es pulsable. */
+.site-footer__contact {
+  color: var(--violet-dark);
+  font-weight: 600;
+}
+.site-footer__year {
+  font-size: 12px;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin-top: 14px;
+}
+
+/* ---------- 17. PLACEHOLDER de imagen (para fotos por sustituir) ---------- */
+/* Marca con un pequeño borde punteado + etiqueta las imágenes que son
+   provisionales, para que sea evidente qué hay que cambiar. Cuando
+   sustituyas el archivo de imagen real, este estilo deja de mostrarse
+   (solo se aplica a través de la clase .is-placeholder). */
+.is-placeholder {
+  outline: 1.5px dashed var(--violet);
+  outline-offset: -1.5px;
+}
+
+/* ---------- 18. AJUSTES PARA PANTALLAS GRANDES ---------- */
+/* El diseño original es "mobile-first" (pensado para móvil, que es por
+   donde llegará la mayoría del tráfico vía QR). Estos ajustes son
+   mínimos, solo para que no se vea todo pegado a los bordes en un
+   ordenador — no cambian colores, tipografías ni estilo. */
+@media (min-width: 640px) {
+  section {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .hero, .product-hero {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
