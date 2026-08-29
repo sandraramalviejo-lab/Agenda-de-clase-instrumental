@@ -607,3 +607,9 @@ section {
   min-height: 130px;
   resize: vertical;
 }
+.contact-form__status {
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+  min-height: 20px;
+}
