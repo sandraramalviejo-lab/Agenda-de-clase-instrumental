@@ -23,8 +23,7 @@
       <span class="nav__wordmark">Tu Viaje Musical</span>
     </div>
     <div class="nav__actions">
-      <!-- EDITAR: cuando tengas tu email real, cámbialo aquí Y en el footer, más abajo -->
-      <a href="mailto:hola@tuviajemusical.com" class="nav__link">Contacto</a>
+      <a href="#contacto" class="nav__link">Contacto</a>
       <a href="producto.html" class="btn btn--outline">Agenda</a>
     </div>
   </nav>
@@ -88,12 +87,43 @@
         <p class="about__text">Soy profesora de música y creé Tu Viaje Musical porque quería que mis alumnos tuvieran herramientas bonitas y útiles para organizar su aprendizaje, curso tras curso. Cada material nace de necesidades reales de clase, pensado para acompañar — sin sustituir — el trabajo con tu profesor o profesora.</p>
       </div>
     </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto">
+      <div class="content-wrap text-center">
+        <h2 class="section-title" style="margin-bottom:14px;">Contacto</h2>
+        <p style="font-size:16px; line-height:1.6; color:var(--ink-soft); margin-bottom:28px;">¿Tienes alguna pregunta o quieres escribirme? Rellena el formulario y te respondo en cuanto pueda.</p>
+      </div>
+
+      <!-- EDITAR: si cambias de servicio de formularios, sustituye la URL de "action" por la que te den -->
+      <form class="contact-form" action="https://app.forminit.com/f/rgi42zi55jg" method="POST">
+        <div>
+          <label for="contacto-nombre">Nombre</label>
+          <input type="text" id="contacto-nombre" name="nombre" required>
+        </div>
+        <div>
+          <label for="contacto-email">Email</label>
+          <input type="email" id="contacto-email" name="email" required>
+        </div>
+        <div>
+          <label for="contacto-asunto">Asunto</label>
+          <input type="text" id="contacto-asunto" name="asunto" required>
+        </div>
+        <div>
+          <label for="contacto-mensaje">Mensaje</label>
+          <textarea id="contacto-mensaje" name="mensaje" required></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+        </div>
+      </form>
+    </section>
   </main>
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="site-footer__brand">Tu Viaje Musical</div>
-    <!-- EDITAR: cuando tengas tu email real, cámbialo aquí Y en el enlace "Contacto" del menú, arriba -->
+    <!-- EDITAR: cuando tengas tu email real, cámbialo aquí -->
     <p class="site-footer__line"><a href="mailto:hola@tuviajemusical.com" class="site-footer__contact">Escríbeme por email</a> <!-- PLACEHOLDER: email real --></p>
     <!-- EDITAR: pon aquí tu usuario de Instagram real -->
     <p class="site-footer__line">@tuviajemusical <!-- PLACEHOLDER: usuario de Instagram real --></p>
