@@ -95,27 +95,29 @@
         <p style="font-size:16px; line-height:1.6; color:var(--ink-soft); margin-bottom:28px;">¿Tienes alguna pregunta o quieres escribirme? Rellena el formulario y te respondo en cuanto pueda.</p>
       </div>
 
-      <!-- EDITAR: si cambias de servicio de formularios, sustituye la URL de "action" por la que te den -->
-      <form class="contact-form" action="https://app.forminit.com/f/rgi42zi55jg" method="POST">
+      <!-- EDITAR: si algún día cambias de formulario en Forminit, actualiza
+           el ID en js/main.js (busca 'rgi42zi55jg') -->
+      <form id="contact-form" class="contact-form">
         <div>
           <label for="contacto-nombre">Nombre</label>
-          <input type="text" id="contacto-nombre" name="nombre" required>
+          <input type="text" id="contacto-nombre" name="fi-sender-fullName" required>
         </div>
         <div>
           <label for="contacto-email">Email</label>
-          <input type="email" id="contacto-email" name="email" required>
+          <input type="email" id="contacto-email" name="fi-sender-email" required>
         </div>
         <div>
           <label for="contacto-asunto">Asunto</label>
-          <input type="text" id="contacto-asunto" name="asunto" required>
+          <input type="text" id="contacto-asunto" name="fi-text-asunto" required>
         </div>
         <div>
           <label for="contacto-mensaje">Mensaje</label>
-          <textarea id="contacto-mensaje" name="mensaje" required></textarea>
+          <textarea id="contacto-mensaje" name="fi-text-mensaje" required></textarea>
         </div>
         <div class="text-center">
           <button type="submit" class="btn btn--primary">Enviar mensaje</button>
         </div>
+        <p id="contact-status" class="contact-form__status" aria-live="polite"></p>
       </form>
     </section>
   </main>
@@ -123,13 +125,13 @@
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="site-footer__brand">Tu Viaje Musical</div>
-    <!-- EDITAR: cuando tengas tu email real, cámbialo aquí -->
-    <p class="site-footer__line"><a href="mailto:hola@tuviajemusical.com" class="site-footer__contact">Escríbeme por email</a> <!-- PLACEHOLDER: email real --></p>
     <!-- EDITAR: pon aquí tu usuario de Instagram real -->
     <p class="site-footer__line">@tuviajemusical <!-- PLACEHOLDER: usuario de Instagram real --></p>
     <p class="site-footer__year">© <span id="anio-actual">2026</span> Tu Viaje Musical</p>
   </footer>
 
+  <!-- SDK de Forminit, para que el formulario de la sección "Contacto" funcione -->
+  <script src="https://forminit.com/sdk/v1/forminit.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
