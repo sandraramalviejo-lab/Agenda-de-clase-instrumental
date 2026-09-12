@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda Instrumental — Tu Viaje Musical</title>
-  <meta name="description" content="Agenda Instrumental: la agenda de curso para alumnos de música de cualquier instrumento, con calendario, repertorio, conciertos y seguimiento semanal.">
+  <meta name="description" content="Agenda Instrumental: elige tu versión (Conservatorio, Andalucía o Nacional) y la plataforma (Lulu o Amazon) para tu agenda de curso de música.">
+
+  <link rel="icon" type="image/png" href="assets/images/logo-icono.png">
+  <link rel="apple-touch-icon" href="assets/images/logo-icono.png">
 
   <!-- Tipografías de marca: Poppins (títulos) y Quicksand (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,113 +16,195 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="has-sticky-bar">
 
   <!-- ============ NAV ============ -->
-  <nav class="nav">
+  <nav class="nav" style="z-index:20;">
     <a href="index.html" class="nav__brand">
-      <!-- EDITAR: sustituye assets/images/logo-placeholder.svg por tu logo real -->
-      <img class="nav__logo is-placeholder" src="assets/images/logo-placeholder.svg" alt="Logo de Tu Viaje Musical">
-      <span class="nav__wordmark">Tu Viaje Musical</span>
+      <img class="nav__logo-img" src="assets/images/logo-horizontal.png" alt="Tu Viaje Musical">
     </a>
-    <div class="nav__actions">
-      <a href="index.html#contacto" class="nav__link">Contacto</a>
-      <a href="#comprar" class="btn btn--outline">Comprar</a>
-    </div>
+    <a href="contacto.html" class="nav__link">Contacto</a>
   </nav>
 
   <main>
     <!-- ============ HERO DE PRODUCTO ============ -->
     <section class="product-hero">
-      <span class="product-hero__sparkle" aria-hidden="true">✦</span>
+      <div class="hero__blob" aria-hidden="true" style="top:-50px; left:-70px; width:220px; height:220px; background:radial-gradient(circle, var(--lilac), transparent 70%); opacity:0.8;"></div>
+      <span class="hero__glyph" aria-hidden="true" style="top:20px; right:28px; font-size:56px; color:var(--aqua); opacity:0.35;">♫</span>
 
       <div class="product-hero__img-frame">
-        <img src="assets/images/portada-agenda.jpg" alt="Portada de la Agenda Instrumental">
+        <!-- EDITAR: portada real de la agenda -->
+        <img src="assets/images/agenda-cover.jpg" alt="Portada de la Agenda Instrumental">
       </div>
 
       <div class="product-hero__body">
-        <!-- EDITAR: curso al que corresponde esta edición -->
-        <span class="eyebrow">Curso 2026/2027</span>
+        <span class="eyebrow">Curso 2026/2027 · 210 páginas</span>
         <h1 class="product-hero__title">Agenda Instrumental</h1>
-        <!-- EDITAR: descripción del producto -->
-        <p class="product-hero__desc">La agenda de curso para alumnos de música, pensada para cualquier instrumento: calendario, repertorio, conciertos y seguimiento semanal en un mismo sitio.</p>
-        <!-- El precio se define una sola vez, en la sección "Comprar" más abajo -->
-        <a href="#comprar" class="btn btn--primary btn--large">Comprar — <span class="precio">20 €</span></a>
+        <p class="product-hero__desc">Calendario del curso, repertorio, eventos y seguimiento semanal.</p>
+        <a href="#elegir" class="btn btn--primary btn--large">Elegir mi agenda</a>
+        <p class="featured-card__price-note">Desde 20 €</p>
       </div>
     </section>
 
-    <!-- ============ QUÉ INCLUYE ============ -->
+    <!-- ============ NACE EN EL AULA ============ -->
     <section>
-      <h2 class="section-title">Qué incluye</h2>
-      <div class="feature-list">
+      <div class="content-wrap text-center">
+        <h2 class="section-title">Nace en el aula</h2>
+        <p style="font-size:16px; line-height:1.7; color:var(--ink-soft); margin-bottom:16px;">Esta agenda nace de la necesidad de que los alumnos tengan todo apuntado en un mismo sitio: qué están estudiando, para cuándo, y cómo van avanzando.</p>
+        <p style="font-size:16px; line-height:1.7; color:var(--ink-soft);">Desde el primer día de curso queda marcado en el calendario qué toca aprender y cuándo. Ver de un vistazo cuántas semanas quedan para conseguirlo cambia por completo la forma de planificarse.</p>
+      </div>
+    </section>
 
-        <div class="feature">
-          <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="3"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+    <!-- ============ PRESENTE EN LAS TRES VERSIONES ============ -->
+    <section>
+      <div class="version-features">
+        <h2 class="version-features__title">Presente en las tres versiones</h2>
+        <div class="version-features__grid">
+          <div class="version-features__item">
+            <span class="version-features__glyph" aria-hidden="true">📅</span>
+            <p class="version-features__text"><strong>Calendario</strong><br>de septiembre a junio</p>
           </div>
-          <div>
-            <h3 class="feature__title">Calendario del curso</h3>
-            <!-- EDITAR: región/comunidad si aplica -->
-            <p class="feature__desc">De septiembre a junio, mes a mes, con festivos de Andalucía marcados.</p>
+          <div class="version-features__item">
+            <span class="version-features__glyph" aria-hidden="true">♪</span>
+            <p class="version-features__text"><strong>Repertorio</strong><br>obras, autores y fechas</p>
+          </div>
+          <div class="version-features__item">
+            <span class="version-features__glyph" aria-hidden="true">✦</span>
+            <p class="version-features__text"><strong>Eventos</strong><br>audiciones y exámenes</p>
+          </div>
+          <div class="version-features__item">
+            <span class="version-features__glyph" aria-hidden="true">✎</span>
+            <p class="version-features__text"><strong>Seguimiento</strong><br>hojas de clase semanales</p>
+          </div>
+          <div class="version-features__item">
+            <span class="version-features__glyph" aria-hidden="true">🎵</span>
+            <p class="version-features__text"><strong>Apuntes musicales</strong><br>papel pautado para tus ideas</p>
+          </div>
+          <div class="version-features__item">
+            <span class="version-features__glyph" aria-hidden="true">🎯</span>
+            <p class="version-features__text"><strong>Herramientas de estudio</strong><br>trabajadas junto a tu profesor/a</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="feature">
-          <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><line x1="12" y1="12" x2="12" y2="7"/><line x1="12" y1="12" x2="16" y2="14"/></svg>
-          </div>
-          <div>
-            <h3 class="feature__title">Horario semanal</h3>
-            <p class="feature__desc">Espacio para organizar tus clases de instrumento y otras asignaturas.</p>
-          </div>
-        </div>
+    <!-- ============ POR DENTRO ============ -->
+    <section>
+      <h2 class="section-title">Por dentro</h2>
+      <div class="interior-grid">
+        <figure class="interior-figure">
+          <img src="assets/images/interior-plan-clases.jpeg" alt="Páginas del contrato para el 10 y el plan de clases de instrumento, rellenadas a mano">
+          <figcaption>Contrato para el 10 y plan de clases de instrumento</figcaption>
+        </figure>
+        <figure class="interior-figure">
+          <img src="assets/images/interior-seguimiento.jpeg" alt="Páginas de otras asignaturas y seguimiento semanal con autoevaluación y rincón de la escucha">
+          <figcaption>Seguimiento semanal, autoevaluación y rincón de la escucha</figcaption>
+        </figure>
+      </div>
+    </section>
 
-        <div class="feature">
-          <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
-          </div>
-          <div>
-            <h3 class="feature__title">Hojas de clase semanales</h3>
-            <p class="feature__desc">Un espacio para anotar, junto a tu profesor/a, qué trabajar antes de la próxima clase.</p>
-          </div>
-        </div>
+    <!-- ============ PASO 1 — ELIGE TU VERSIÓN ============ -->
+    <section id="elegir" style="scroll-margin-top:80px;">
+      <div class="step-header" style="max-width:520px; margin-left:auto; margin-right:auto;">
+        <span class="step-header__number" aria-hidden="true">1</span>
+        <h2 class="step-header__title section-title" style="margin:0; text-align:left;">Elige tu versión</h2>
+      </div>
 
-        <div class="feature">
-          <div class="feature__icon"><span class="feature__glyph" aria-hidden="true">♪</span></div>
-          <div>
-            <h3 class="feature__title">Seguimiento de repertorio</h3>
-            <p class="feature__desc">Piezas, autores y fechas de inicio y fin de cada obra trabajada.</p>
+      <!-- EDITAR: los datos de cada versión (título, público, enlaces de compra)
+           están en js/main.js, dentro de la lista VERSIONS -->
+      <div class="selection-group" id="version-group" role="radiogroup" aria-label="Elige tu versión">
+        <button type="button" class="option-card" role="radio" aria-checked="false" data-id="conservatorio">
+          <div class="option-card__row">
+            <span class="option-card__dot" aria-hidden="true"></span>
+            <div class="option-card__body">
+              <div class="option-card__head">
+                <span class="option-card__label">3º y 4º EE.BB.</span>
+                <span class="option-card__tag">ANDALUCÍA</span>
+              </div>
+              <p class="option-card__who">Para alumnos de 3º y 4º de Enseñanzas Básicas en conservatorios de Andalucía.</p>
+              <p class="option-card__detail">Calendario escolar de Andalucía, con espacio para anotar las actividades de Lenguaje musical, Agrupaciones musicales y Coro.</p>
+            </div>
           </div>
-        </div>
+        </button>
+        <button type="button" class="option-card" role="radio" aria-checked="false" data-id="andalucia">
+          <div class="option-card__row">
+            <span class="option-card__dot" aria-hidden="true"></span>
+            <div class="option-card__body">
+              <div class="option-card__head">
+                <span class="option-card__label">Todos los cursos</span>
+                <span class="option-card__tag">ANDALUCÍA</span>
+              </div>
+              <p class="option-card__who">Para cualquier curso e instrumento, dentro de Andalucía.</p>
+              <p class="option-card__detail">Calendario escolar de Andalucía, con espacio abierto para anotar las actividades del resto de asignaturas.</p>
+            </div>
+          </div>
+        </button>
+        <button type="button" class="option-card" role="radio" aria-checked="false" data-id="nacional">
+          <div class="option-card__row">
+            <span class="option-card__dot" aria-hidden="true"></span>
+            <div class="option-card__body">
+              <div class="option-card__head">
+                <span class="option-card__label">Todos los cursos</span>
+                <span class="option-card__tag">Nacional</span>
+              </div>
+              <p class="option-card__who">Para cualquier curso e instrumento, en cualquier punto de España.</p>
+              <p class="option-card__detail">Calendario del curso con festivos nacionales. Espacio abierto para anotar las actividades del resto de asignaturas.</p>
+            </div>
+          </div>
+        </button>
+      </div>
+    </section>
 
-        <div class="feature">
-          <div class="feature__icon"><span class="feature__glyph feature__glyph--gold" aria-hidden="true">✦</span></div>
-          <div>
-            <h3 class="feature__title">Conciertos y audiciones</h3>
-            <p class="feature__desc">Un lugar fijo para anotar fechas, lugares y exámenes importantes.</p>
-          </div>
-        </div>
+    <!-- ============ PASO 2 — ELIGE DÓNDE IMPRIMIRLA ============ -->
+    <section>
+      <div class="step-header" style="max-width:520px; margin-left:auto; margin-right:auto;">
+        <span class="step-header__number" aria-hidden="true">2</span>
+        <h2 class="step-header__title section-title" style="margin:0; text-align:left;">Elige dónde imprimirla</h2>
+      </div>
+      <p class="step-note">Cada una de las tres versiones esta disponible en dos plataformas diferentes, cambia el encuadernado, el precio y el plazo.</p>
 
-        <div class="feature">
-          <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg>
+      <!-- EDITAR: los datos de cada plataforma (precio, plazos) están en
+           js/main.js, dentro de la lista PLATFORMS -->
+      <div class="selection-grid" id="platform-group" role="radiogroup" aria-label="Elige dónde imprimirla">
+        <button type="button" class="option-card option-card--platform" role="radio" aria-checked="false" data-id="lulu">
+          <div class="option-card__row">
+            <span class="option-card__dot" aria-hidden="true"></span>
+            <span class="option-card__label">Lulu</span>
           </div>
-          <div>
-            <h3 class="feature__title">Espacio para rellenar recursos de estudio junto con tu profesor/a</h3>
-            <p class="feature__desc">Fichas para trabajar pasajes difíciles y preparar el escenario.</p>
+          <p class="option-card__price">27,57 €</p>
+          <p class="option-card__price-breakdown">20 € + 7,57 € de envío</p>
+          <div class="option-card__details">
+            <div class="option-card__detail-row"><span aria-hidden="true">◷</span><span>Llega en unas 2 semanas</span></div>
+            <div class="option-card__detail-row"><span aria-hidden="true">▤</span><span>Encuadernación en espiral</span></div>
+            <div class="option-card__detail-row"><span aria-hidden="true">✦</span><span>Se abre plana: cómoda para escribir</span></div>
           </div>
-        </div>
+        </button>
+        <button type="button" class="option-card option-card--platform" role="radio" aria-checked="false" data-id="kdp">
+          <div class="option-card__row">
+            <span class="option-card__dot" aria-hidden="true"></span>
+            <span class="option-card__label">Amazon</span>
+          </div>
+          <p class="option-card__price">20 €</p>
+          <p class="option-card__price-breakdown">Envío gratis con Prime</p>
+          <div class="option-card__details">
+            <div class="option-card__detail-row"><span aria-hidden="true">◷</span><span>Llega en 4-5 días</span></div>
+            <div class="option-card__detail-row"><span aria-hidden="true">▤</span><span>Encuadernación encolada</span></div>
+            <div class="option-card__detail-row"><span aria-hidden="true">✦</span><span>Acabado tipo libro</span></div>
+          </div>
+        </button>
+      </div>
+    </section>
 
-        <div class="feature">
-          <div class="feature__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="oklch(30% 0.09 318)" stroke-width="1.6"><rect x="4" y="10" width="3" height="8"/><rect x="10.5" y="5" width="3" height="13"/><rect x="17" y="13" width="3" height="5"/></svg>
-          </div>
-          <div>
-            <h3 class="feature__title">Escucha y autoevaluación</h3>
-            <p class="feature__desc">Actividades de escucha activa y seguimiento semanal de objetivos.</p>
-          </div>
-        </div>
-
+    <!-- ============ RESUMEN DE COMPRA ============ -->
+    <section>
+      <div class="summary-panel">
+        <p class="summary-panel__eyebrow">Tu selección</p>
+        <p class="summary-panel__title" id="summary-title">Elige una versión arriba</p>
+        <p class="summary-panel__sub" id="summary-sub">Y después, dónde quieres imprimirla</p>
+        <p class="summary-panel__price" id="summary-price">Desde 20 €</p>
+        <p class="summary-panel__price-note" id="summary-price-note">según versión y plataforma</p>
+        <a href="#elegir" id="summary-cta" class="summary-panel__cta">Elegir versión</a>
+        <p class="summary-panel__note" id="summary-note"></p>
       </div>
     </section>
 
@@ -127,41 +212,8 @@
     <section>
       <div class="card who-card">
         <h2 class="who-card__title">Para quién es</h2>
-        <!-- EDITAR: ajusta este texto si cambia el público objetivo -->
-        <p class="who-card__text">Está diseñada especialmente para alumnos de 3º y 4º de Enseñanzas Básicas en Andalucía, cuyo calendario y curso siguen esta edición al detalle. Aun así, cualquier alumno de música, de cualquier instrumento y nivel, le sacará partido — y es también un buen recurso para profesores que quieran recomendarla o usarla en su propia enseñanza.</p>
-      </div>
-    </section>
-
-    <!-- ============ GALERÍA "POR DENTRO" ============ -->
-    <section>
-      <h2 class="section-title">Por dentro</h2>
-      <!-- EDITAR: sustituye las 4 imágenes de assets/images/galeria-*.svg
-           por fotos reales de páginas interiores de la agenda -->
-      <div class="gallery">
-        <div class="gallery__item">
-          <img class="is-placeholder" src="assets/images/galeria-1-placeholder.svg" alt="Página interior — calendario mensual">
-        </div>
-        <div class="gallery__item">
-          <img class="is-placeholder" src="assets/images/galeria-2-placeholder.svg" alt="Página interior — repertorio del curso">
-        </div>
-        <div class="gallery__item">
-          <img class="is-placeholder" src="assets/images/galeria-3-placeholder.svg" alt="Página interior — seguimiento semanal">
-        </div>
-        <div class="gallery__item">
-          <img class="is-placeholder" src="assets/images/galeria-4-placeholder.svg" alt="Página interior — conciertos y audiciones">
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ COMPRAR ============ -->
-    <section id="comprar">
-      <div class="buy-box">
-        <!-- EDITAR: curso de esta edición -->
-        <p class="buy-box__label">Agenda Instrumental · Curso 2026/2027</p>
-        <p class="buy-box__price precio">20 €</p>
-        <a href="https://www.lulu.com/shop/tu-viaje-musical/agenda-instrumental/paperback/product-rmkyp9z.html?q=Agenda+Instrumental&page=1&pageSize=4" class="btn btn--on-violet" target="_blank" rel="noopener">Comprar en Lulu</a>
-        <!-- El envío varía según el país/región de destino, así que se muestra aparte en vez de sumarlo al precio -->
-        <p class="buy-box__note">+ gastos de envío (se calculan en Lulu según destino)</p>
+        <p style="font-size:16px; line-height:1.65; color:var(--ink-soft); text-align:left; margin-bottom:14px;">Para alumnos de música de cualquier instrumento — no solo piano — tanto niños como adultos. La versión Específica Conservatorio está pensada al detalle para 3º y 4º de Enseñanzas Básicas en Andalucía; las otras dos sirven para cualquier curso y nivel.</p>
+        <p style="font-size:16px; line-height:1.65; color:var(--ink-soft); text-align:left;">También es un buen recurso para profesores que quieran recomendarla a sus alumnos o usarla en su propia enseñanza.</p>
       </div>
     </section>
 
@@ -170,25 +222,28 @@
       <h2 class="section-title">Preguntas frecuentes</h2>
       <div class="faq-list">
         <details class="faq-item">
+          <summary>¿Qué versión me conviene?</summary>
+          <p>Si estudias 3º o 4º de Enseñanzas Básicas en un conservatorio de Andalucía, la <strong>Agenda para alumnos de 3o y 4o</strong> es la más cómoda: tiene un apartado para Lenguaje musical, Agrupaciones musicales y Coro por cada semana. Si estudias en Andalucía pero en otro curso, la versión <strong>Andalucía</strong> te deja escribir tus propias asignaturas. Fuera de Andalucía, la <strong>Nacional</strong>, con calendario sin festivos regionales.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué encuadernación es mejor?</summary>
+          <p>La espiral de Lulu se abre completamente plana, lo que va muy bien para escribir sobre el atril o la mesa. La encolada de Amazon tiene un aspecto más de libro y llega antes. Las dos tienen exactamente el mismo contenido.</p>
+        </details>
+        <details class="faq-item">
           <summary>¿Sirve para cualquier instrumento?</summary>
-          <p>Sí. Está pensada para cualquier instrumento, no solo piano — el contenido se organiza por curso y repertorio, no por instrumento concreto.</p>
+          <p>Sí. El contenido se organiza por curso y repertorio, no por instrumento concreto.</p>
         </details>
         <details class="faq-item">
-          <summary>¿Para qué edades es?</summary>
-          <p>Tanto para niños como para adultos que estudian música. El formato se adapta bien a distintos niveles.</p>
+          <summary>¿Hay descuento para conservatorios o grupos?</summary>
+          <p>No hay un descuento por volumen sobre el precio del ejemplar, pero encargando muchos a la vez en Lulu los gastos de envío por unidad bajan bastante. En Amazon desaparecen directamente con Prime.</p>
         </details>
         <details class="faq-item">
-          <summary>¿De qué curso escolar es esta edición?</summary>
-          <p>Esta edición cubre el curso 2026/2027, de septiembre a junio.</p>
+          <summary>¿Y si quiero devolverla?</summary>
+          <p>Las devoluciones las gestiona la plataforma donde hayas comprado, según sus propias condiciones — Lulu o Amazon.</p>
         </details>
         <details class="faq-item">
           <summary>¿Qué tamaño tiene?</summary>
-          <p>Formato A5 vertical (14,8 × 21 cm).</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Hacéis envíos?</summary>
-          <!-- EDITAR: completa con zonas de envío y plazos -->
-          <p>[completar: zonas de envío y plazos]</p>
+          <p>En Lulu es tamaño A5. En Amazon, 17,78 × 25,4 cm (con 1,22 cm de lomo).</p>
         </details>
       </div>
     </section>
@@ -196,11 +251,24 @@
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
-    <div class="site-footer__brand">Tu Viaje Musical</div>
-    <!-- EDITAR: pon aquí tu usuario de Instagram real -->
-    <p class="site-footer__line">@tuviajemusical <!-- PLACEHOLDER: usuario de Instagram real --></p>
+    <img class="site-footer__logo" src="assets/images/logo-icono.png" alt="Tu Viaje Musical">
+    <div class="site-footer__links">
+      <a href="index.html">Inicio</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
     <p class="site-footer__year">© <span id="anio-actual">2026</span> Tu Viaje Musical</p>
   </footer>
+
+  <!-- ============ BARRA FIJA DE COMPRA ============ -->
+  <div class="sticky-buy-bar" id="sticky-buy-bar" inert>
+    <div class="sticky-buy-bar__inner">
+      <div class="sticky-buy-bar__info">
+        <div class="sticky-buy-bar__version" id="sticky-version"></div>
+        <div class="sticky-buy-bar__price" id="sticky-price"></div>
+      </div>
+      <a href="#" id="sticky-cta" class="sticky-buy-bar__cta" target="_blank" rel="noopener noreferrer"></a>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
