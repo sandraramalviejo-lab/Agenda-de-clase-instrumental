@@ -42,7 +42,7 @@
       detail: 'Calendario escolar de Andalucía, con espacio abierto para anotar las actividades del resto de asignaturas.',
       links: {
         lulu: 'https://www.lulu.com/shop/tu-viaje-musical/agenda-instrumental/paperback/product-45er7zn.html',
-        kdp: null // EDITAR: pendiente de publicar en Amazon KDP
+        kdp: 'https://www.amazon.es/dp/B0HJMJG12C'
       }
     },
     {
