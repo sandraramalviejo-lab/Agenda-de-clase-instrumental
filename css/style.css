@@ -23,7 +23,8 @@
   --ink-soft: oklch(48% 0.06 318);     /* texto secundario */
   --lilac: oklch(83% 0.06 300);        /* acento lavanda */
   --rose: oklch(85% 0.055 358);        /* acento rosa */
-  --gold: oklch(78% 0.1 85);           /* acento mostaza */
+  --gold: oklch(78% 0.1 85);           /* acento mostaza (en desuso, pendiente de retirar cuando se actualice producto.html) */
+  --aqua: oklch(78% 0.075 220);        /* acento turquesa, viene del logo */
   --violet: oklch(45% 0.13 305);       /* violeta de marca (botones) */
   --violet-dark: oklch(38% 0.13 308);  /* violeta oscuro (texto sobre crema) */
   --cream: oklch(98% 0.01 300);        /* texto/fondo crema sobre violeta */
@@ -112,6 +113,14 @@ button {
   height: 34px;
   flex-shrink: 0;
   border-radius: 50%;
+  display: block;
+}
+/* Logo real horizontal (nav): sustituye al placeholder circular antiguo.
+   Se usa en index.html; producto.html y contacto.html lo adoptarán en su
+   próxima actualización. */
+.nav__logo-img {
+  height: 38px;
+  width: auto;
   display: block;
 }
 .nav__wordmark {
@@ -226,9 +235,8 @@ section {
   position: absolute;
   pointer-events: none;
 }
-.hero__glyph--note1 { top: 40px; left: 20px; font-size: 28px; color: var(--lilac); opacity: 0.9; transform: rotate(-12deg); }
-.hero__glyph--star   { top: 110px; right: 36px; font-size: 22px; color: var(--gold); opacity: 0.8; }
-.hero__glyph--note2 { bottom: 30px; right: 60px; font-size: 34px; color: var(--rose); opacity: 0.7; transform: rotate(8deg); }
+.hero__glyph--note1 { top: 70px; left: 32px; font-size: 60px; color: var(--lilac); opacity: 0.5; transform: rotate(-12deg); }
+.hero__glyph--note2 { bottom: 24px; right: 40px; font-size: 72px; color: var(--aqua); opacity: 0.35; transform: rotate(8deg); }
 
 .hero__content {
   position: relative;
@@ -241,6 +249,14 @@ section {
   letter-spacing: 0.02em;
   line-height: 1.15;
   margin: 0 0 18px;
+}
+/* Logo vertical del hero de Inicio: hace de h1 (envuelto en <h1> por
+   accesibilidad/SEO), a tamaño fluido con un máximo. */
+.hero__logo {
+  width: 100%;
+  max-width: 230px;
+  height: auto;
+  margin: 0 auto;
 }
 .hero__lead {
   font-size: 19px;
@@ -332,8 +348,21 @@ section {
   margin: 0 0 22px;
   text-align: center;
 }
+/* Chips de versión bajo la descripción del producto destacado */
+.featured-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 0 22px;
+}
+.featured-card__price-note {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
 
-/* ---------- 9. CHIPS ("Próximamente") ---------- */
+/* ---------- 9. CHIPS ("Próximamente" y versión de producto) ---------- */
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -350,6 +379,16 @@ section {
   padding: 8px 16px;
   border-radius: var(--radius-pill);
 }
+/* Variante "tag" rellena (chips de versión de la agenda) */
+.chip--tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--violet-dark);
+  background: oklch(93% 0.035 300);
+  border: none;
+  padding: 6px 13px;
+}
 
 /* ---------- 10. "SOBRE MÍ" ---------- */
 .about {
@@ -358,8 +397,8 @@ section {
   text-align: center;
 }
 .about__glyph {
-  font-size: 26px;
-  color: var(--gold);
+  font-size: 30px;
+  color: var(--aqua);
 }
 .about__title {
   font-size: 22px;
@@ -528,6 +567,21 @@ section {
   letter-spacing: 0.04em;
   margin-bottom: 10px;
 }
+/* Logo-icono del footer (nuevo diseño): sustituye al nombre de marca en
+   texto en las páginas ya migradas (por ahora, index.html). */
+.site-footer__logo {
+  height: 52px;
+  margin: 0 auto 14px;
+}
+/* Fila de enlaces a las otras páginas del sitio (nuevo diseño de footer) */
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
 .site-footer__line {
   font-size: 14px;
   color: var(--ink-soft);
@@ -543,7 +597,7 @@ section {
   font-size: 12px;
   color: var(--ink-soft);
   opacity: 0.7;
-  margin-top: 14px;
+  margin-top: 20px;
 }
 
 /* ---------- 17. PLACEHOLDER de imagen (para fotos por sustituir) ---------- */
