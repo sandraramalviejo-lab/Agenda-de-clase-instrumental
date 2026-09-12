@@ -7,7 +7,7 @@
    que buscas con Ctrl+F.
 
    Si solo quieres cambiar TEXTOS o FOTOS, no necesitas tocar
-   este archivo — ve a index.html o producto.html.
+   este archivo — ve a index.html, producto.html o contacto.html.
 
    Si quieres cambiar un COLOR de toda la web, cámbialo una
    sola vez aquí abajo, en ":root", y se actualizará en todas
@@ -18,28 +18,40 @@
 :root {
   /* Colores — tal cual el diseño original de la marca */
   --bg: oklch(98% 0.012 300);          /* fondo general */
-  --surface: oklch(99% 0.006 90);      /* fondo de tarjetas */
+  --surface: oklch(99% 0.006 90);      /* fondo de tarjetas (crema, no blanco) */
   --ink: oklch(30% 0.09 318);          /* texto principal */
   --ink-soft: oklch(48% 0.06 318);     /* texto secundario */
-  --lilac: oklch(83% 0.06 300);        /* acento lavanda */
-  --rose: oklch(85% 0.055 358);        /* acento rosa */
-  --gold: oklch(78% 0.1 85);           /* acento mostaza (en desuso) */
-  --aqua: oklch(78% 0.075 220);        /* acento turquesa, viene del logo */
-  --violet: oklch(45% 0.13 305);       /* violeta de marca (botones) */
-  --violet-dark: oklch(38% 0.13 308);  /* violeta oscuro (texto sobre crema) */
-  --cream: oklch(98% 0.01 300);        /* texto/fondo crema sobre violeta */
+  --lilac: oklch(83% 0.06 300);        /* acento lavanda: bordes, deco */
+  --rose: oklch(85% 0.055 358);        /* acento rosa: solo deco (Inicio) */
+  --aqua: oklch(78% 0.075 220);        /* acento turquesa: glifos musicales */
+  --violet: oklch(45% 0.13 305);       /* violeta de marca (CTAs, selección) */
+  --violet-dark: oklch(38% 0.13 308);  /* violeta oscuro (texto sobre fondos claros) */
+  --cream: oklch(98% 0.01 300);        /* "blanco" cálido, texto sobre violeta */
+  --card-selected-bg: oklch(96% 0.03 300);
+  --chip-bg: oklch(93% 0.035 300);
+  --tag-bg: oklch(88% 0.05 300);
+  --placeholder: oklch(70% 0.03 318);
+  --input-bg: oklch(100% 0 0);
 
   /* Radios reutilizados en toda la web */
   --radius-pill: 99px;
-  --radius-card: 26px;
-  --radius-img: 20px;
+  --radius-card: 28px;
+  --radius-card-sm: 24px;
+  --radius-sel: 20px;
+  --radius-img: 22px;
+  --radius-img-sm: 18px;
+  --radius-faq: 14px;
+  --radius-input: 12px;
 
   /* Sombras reutilizadas */
   --shadow-card: 0 20px 50px -30px oklch(30% 0.09 318 / 0.4);
   --shadow-hero-img: 0 24px 50px -28px oklch(30% 0.09 318 / 0.45);
+  --shadow-selected: 0 10px 28px -18px oklch(45% 0.13 305 / .6);
 
-  /* Ancho máximo del contenido (columna central) */
+  /* Anchos máximos de columna central */
   --content-width: 560px;
+  --content-narrow: 520px;
+  --content-narrower: 480px;
 }
 
 /* ---------- 2. RESET BÁSICO ---------- */
@@ -48,6 +60,11 @@
 }
 html {
   scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 body {
   margin: 0;
@@ -58,10 +75,14 @@ body {
   min-height: 100vh;
   -webkit-text-size-adjust: 100%;
 }
-/* En producto.html el body lleva esta clase, para dejar hueco a la
-   barra fija de compra del final. */
-body.has-sticky-bar {
-  padding-bottom: 80px;
+/* Body en columna, para que el footer quede al fondo en páginas cortas
+   (se activa con la clase .page--column, ver Contacto) */
+body.page--column {
+  display: flex;
+  flex-direction: column;
+}
+body.page--column main {
+  flex: 1;
 }
 img {
   max-width: 100%;
@@ -87,11 +108,24 @@ ul {
   padding: 0;
   list-style: none;
 }
-summary::marker {
+summary::marker,
+summary::-webkit-details-marker {
   color: var(--violet);
 }
 button {
   font-family: inherit;
+}
+
+/* Estado de foco visible con teclado en todos los elementos interactivos
+   (deuda de accesibilidad del prototipo, corregida aquí) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2.5px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* ---------- 3. NAVEGACIÓN (cabecera) ---------- */
@@ -106,7 +140,11 @@ button {
   background: color-mix(in oklch, var(--bg) 88%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 10;
+  z-index: 20;
+}
+/* Contacto no lleva nav pegajoso (ver spec) */
+.nav--static {
+  position: static;
 }
 .nav__brand {
   display: flex;
@@ -114,34 +152,24 @@ button {
   gap: 10px;
 }
 .nav__logo {
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  display: block;
-}
-.nav__logo-img {
   height: 38px;
   width: auto;
   display: block;
 }
-.nav__wordmark {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
+/* Agrupa los enlaces de la derecha del menú para que quepan bien
+   uno junto al otro, también en móvil. */
 .nav__actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
+/* Enlace de texto discreto del menú (p.ej. "Contacto"), más ligero que
+   el botón principal para no competir visualmente con él. */
 .nav__link {
   font-family: 'Quicksand', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: var(--ink-soft);
+  color: var(--violet-dark);
   white-space: nowrap;
 }
 
@@ -155,16 +183,19 @@ button {
   cursor: pointer;
   text-align: center;
 }
+/* Botón principal: fondo violeta, texto crema (CTAs de compra) */
 .btn--primary {
   background: var(--violet);
   color: var(--cream);
   font-size: 16px;
   padding: 14px 32px;
 }
+/* Botón grande, para héroes */
 .btn--large {
   font-size: 17px;
   padding: 16px 40px;
 }
+/* Botón secundario: solo borde, usado en el nav */
 .btn--outline {
   background: transparent;
   color: var(--violet-dark);
@@ -173,11 +204,28 @@ button {
   font-weight: 600;
   padding: 8px 16px;
 }
+/* Botón sobre fondo violeta (panel de resumen) */
 .btn--on-violet {
-  background: var(--cream);
-  color: var(--violet-dark);
   font-size: 16px;
   padding: 15px 36px;
+  border: 2px solid var(--cream);
+  transition: background .15s, color .15s;
+}
+.btn--on-violet.is-ready {
+  background: var(--cream);
+  color: var(--violet-dark);
+}
+.btn--on-violet:not(.is-ready) {
+  background: transparent;
+  color: var(--cream);
+}
+/* Botón de la barra fija inferior */
+.btn--bar {
+  flex-shrink: 0;
+  background: var(--violet);
+  color: var(--cream);
+  font-size: 15px;
+  padding: 12px 26px;
 }
 
 /* ---------- 5. SECCIONES / CONTENEDORES ---------- */
@@ -196,6 +244,15 @@ section {
 }
 .text-center {
   text-align: center;
+}
+.eyebrow {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  display: block;
+  margin-bottom: 10px;
 }
 
 /* ---------- 6. HERO (Inicio) ---------- */
@@ -234,19 +291,16 @@ section {
 
 .hero__content {
   position: relative;
-  max-width: 520px;
+  max-width: var(--content-narrow);
   margin: 0 auto;
   text-align: center;
 }
-.hero__title {
-  font-size: clamp(30px, 7vw, 44px);
-  letter-spacing: 0.02em;
-  line-height: 1.15;
-  margin: 0 0 18px;
-}
 .hero__logo {
+  margin: 0 0 22px;
+}
+.hero__logo img {
   width: 100%;
-  max-width: 230px;
+  max-width: 175px;
   height: auto;
   margin: 0 auto;
 }
@@ -256,65 +310,23 @@ section {
   color: var(--ink-soft);
 }
 
-/* ---------- 7. HERO de producto ---------- */
-.product-hero {
-  padding: 28px 24px 40px;
-  overflow: hidden;
-}
-.product-hero__img-frame {
-  position: relative;
-  max-width: 320px;
-  margin: 0 auto 24px;
-  border-radius: var(--radius-img);
-  overflow: hidden;
-  box-shadow: var(--shadow-hero-img);
-}
-.product-hero__body {
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: center;
-}
-.eyebrow {
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--violet);
-  display: block;
-  margin-bottom: 10px;
-}
-.product-hero__title {
-  font-size: clamp(28px, 7vw, 38px);
-  line-height: 1.2;
-  margin: 10px 0 12px;
-}
-.product-hero__desc {
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  margin: 0 0 24px;
-  max-width: 100%;
-}
-
-/* ---------- 8. TARJETA de producto destacado (Inicio) ---------- */
+/* ---------- 7. TARJETA de producto destacado (Inicio) ---------- */
 .card {
   background: var(--surface);
   border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
 }
 .featured-card {
   max-width: var(--content-width);
   margin: 0 auto;
   padding: 28px 22px 32px;
+  box-shadow: var(--shadow-card);
 }
 .featured-card__img {
-  border-radius: 18px;
+  border-radius: var(--radius-img-sm);
   overflow: hidden;
-  margin: 16px 0 20px;
+  margin: 16px auto 20px;
   aspect-ratio: 3 / 4;
   max-width: 260px;
-  margin-left: auto;
-  margin-right: auto;
 }
 .featured-card__img img {
   width: 100%;
@@ -333,49 +345,43 @@ section {
   margin: 0 0 22px;
   text-align: center;
 }
-.featured-card__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin: 0 0 22px;
-}
-.featured-card__price-note {
+.featured-card__price {
   font-size: 14px;
   color: var(--ink-soft);
   margin-top: 12px;
 }
 
-/* ---------- 9. CHIPS ---------- */
+/* ---------- 8. CHIPS ---------- */
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
-  margin-top: 20px;
 }
+/* Chip "sólido" (versiones, en la tarjeta de producto de Inicio) */
 .chip {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--violet-dark);
+  background: var(--chip-bg);
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+}
+/* Chip "outline" (sección Próximamente) */
+.chip--outline {
   font-size: 13px;
   font-weight: 600;
   color: var(--ink-soft);
   background: var(--surface);
   border: 1px solid var(--lilac);
   padding: 8px 16px;
-  border-radius: var(--radius-pill);
-}
-.chip--tag {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--violet-dark);
-  background: oklch(93% 0.035 300);
-  border: none;
-  padding: 6px 13px;
 }
 
-/* ---------- 10. "SOBRE MÍ" ---------- */
-.about {
-  max-width: var(--content-width);
+/* ---------- 9. "SOBRE MÍ" / "PRÓXIMAMENTE" ---------- */
+.about,
+.upcoming {
+  max-width: var(--content-narrow);
   margin: 0 auto;
   text-align: center;
 }
@@ -384,30 +390,476 @@ section {
   color: var(--aqua);
 }
 .about__title {
-  font-size: 22px;
+  font-size: 24px;
   margin: 14px 0 14px;
 }
-.about__text {
+.about__text,
+.upcoming__text {
   font-size: 16px;
   line-height: 1.65;
   color: var(--ink-soft);
 }
+.upcoming__title {
+  font-size: 24px;
+  margin: 0 0 14px;
+}
+.upcoming__text {
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
 
-/* ---------- 12. "PARA QUIÉN ES" ---------- */
-.who-card {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 30px 24px;
+/* ---------- 10. FOOTER ---------- */
+.site-footer {
+  padding: 36px 24px 44px;
+  border-top: 1px solid var(--lilac);
   text-align: center;
 }
-.who-card__title {
-  font-size: 22px;
-  margin: 0 0 12px;
+.site-footer__logo {
+  height: 52px;
+  width: auto;
+  margin: 0 auto 14px;
+}
+.site-footer__links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.site-footer__year {
+  font-size: 13px;
+  color: var(--ink-soft);
+  opacity: 0.7;
+  margin-top: 20px;
 }
 
-/* ---------- 15. FAQ (acordeón nativo) ---------- */
+/* ---------- 11. HERO de producto (Agenda Instrumental) ---------- */
+.product-hero {
+  padding: 24px 24px 40px;
+  overflow: hidden;
+}
+.product-hero__blob {
+  position: absolute;
+  top: -50px;
+  left: -70px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--lilac), transparent 70%);
+  filter: blur(18px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.product-hero__glyph {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-size: 56px;
+  color: var(--aqua);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.product-hero__img-frame {
+  position: relative;
+  max-width: 320px;
+  margin: 0 auto 24px;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  box-shadow: var(--shadow-hero-img);
+}
+.product-hero__body {
+  max-width: var(--content-narrower);
+  margin: 0 auto;
+  text-align: center;
+}
+.product-hero__title {
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.2;
+  margin: 10px 0 12px;
+}
+.product-hero__desc {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  max-width: 100%;
+}
+.product-hero__price {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
+
+/* ---------- 12. "NACE EN EL AULA" (narrativa) ---------- */
+.narrative {
+  padding-top: 16px;
+}
+.narrative__wrap {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+.narrative__title {
+  font-size: 24px;
+  margin: 0 0 16px;
+  text-align: center;
+}
+.narrative__text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  text-align: center;
+}
+.narrative__text:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 13. "PRESENTE EN LAS TRES VERSIONES" ---------- */
+.highlights {
+  padding-top: 8px;
+  padding-bottom: 48px;
+}
+.highlights__card {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  padding: 28px 24px;
+}
+.highlights__title {
+  font-size: 20px;
+  margin: 0 0 18px;
+  text-align: center;
+}
+.highlights__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.highlight {
+  text-align: center;
+}
+.highlight__glyph {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.highlight__text {
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 0;
+  color: var(--ink-soft);
+}
+.highlight__text strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- 14. GALERÍA "POR DENTRO" ---------- */
+.inside {
+  padding-top: 8px;
+  padding-bottom: 40px;
+}
+.inside__wrap {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+.inside__title {
+  font-size: 24px;
+  margin: 0 0 20px;
+  text-align: center;
+}
+.inside__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.inside__grid figure {
+  margin: 0;
+}
+.inside__grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-sel);
+}
+.inside__grid figcaption {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ---------- 15. PASOS "ELIGE TU VERSIÓN" / "ELIGE DÓNDE IMPRIMIRLA" ---------- */
+.step {
+  padding-top: 24px;
+  padding-bottom: 32px;
+}
+.step + .step {
+  padding-top: 8px;
+}
+.step__wrap {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+.step__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.step__number {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--violet);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.step__title {
+  font-size: 24px;
+  margin: 0;
+}
+.step__intro {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+  padding-left: 36px;
+}
+
+/* Tarjetas seleccionables — estilo compartido entre el paso 1 (versión)
+   y el paso 2 (plataforma). */
+.sel-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sel-group--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+.sel-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  background: var(--surface);
+  border: 2px solid var(--lilac);
+  border-radius: var(--radius-sel);
+  padding: 18px;
+  transition: border-color .15s, background .15s;
+  box-shadow: none;
+}
+.sel-card[aria-checked="true"] {
+  background: var(--card-selected-bg);
+  border-color: var(--violet);
+  box-shadow: var(--shadow-selected);
+}
+.sel-group--grid .sel-card {
+  height: 100%;
+}
+.sel-card__dot {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-top: 2px;
+  border: 2px solid var(--lilac);
+  background: transparent;
+  transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.sel-card[aria-checked="true"] .sel-card__dot {
+  border-color: var(--violet);
+  background: var(--violet);
+  box-shadow: inset 0 0 0 3px var(--surface);
+}
+.sel-group--grid .sel-card__dot {
+  margin-top: 0;
+}
+
+/* Tarjeta de versión (paso 1) */
+.version-card__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.version-card__body {
+  flex: 1;
+  min-width: 0;
+}
+.version-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+.version-card__label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink);
+}
+.version-card__tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--violet-dark);
+  background: var(--tag-bg);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+}
+.version-card__who {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+.version-card__detail {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Tarjeta de plataforma (paso 2) */
+.platform-card__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 14px;
+}
+.platform-card__name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink);
+}
+.platform-card__price {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--ink);
+  line-height: 1;
+}
+.platform-card__breakdown {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 4px 0 14px;
+}
+.platform-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.platform-card__detail {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+}
+.platform-card__detail-glyph {
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+.platform-card__detail-text {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* ---------- 16. PANEL DE RESUMEN ---------- */
+.summary {
+  padding-top: 8px;
+  padding-bottom: 56px;
+}
+.summary__panel {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+  background: var(--violet);
+  border-radius: var(--radius-card);
+  padding: 30px 24px;
+  color: var(--cream);
+  text-align: center;
+}
+.summary__eyebrow {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin: 0 0 10px;
+}
+.summary__title {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+.summary__sub {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 18px;
+  opacity: 0.85;
+}
+.summary__price {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 34px;
+  margin: 0 0 4px;
+}
+.summary__price-note {
+  font-size: 13px;
+  opacity: 0.8;
+  margin: 0 0 20px;
+}
+.summary__note {
+  font-size: 12px;
+  opacity: 0.75;
+  margin: 14px 0 0;
+  min-height: 1em;
+}
+
+/* ---------- 17. "PARA QUIÉN ES" ---------- */
+.who-card {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+  padding: 30px 24px;
+}
+.who-card__title {
+  font-size: 20px;
+  margin: 0 0 12px;
+  text-align: center;
+}
+.who-card__text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+  text-align: left;
+}
+.who-card__text:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 18. FAQ (acordeón nativo) ---------- */
 .faq-list {
-  max-width: var(--content-width);
+  max-width: var(--content-narrow);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -415,7 +867,7 @@ section {
 }
 .faq-item {
   background: var(--surface);
-  border-radius: 14px;
+  border-radius: var(--radius-faq);
   padding: 14px 18px;
 }
 .faq-item summary {
@@ -429,39 +881,123 @@ section {
   color: var(--ink-soft);
   margin: 10px 0 0;
 }
+.faq-item strong {
+  font-weight: 600;
+}
 
-/* ---------- 16. FOOTER ---------- */
-.site-footer {
-  padding: 36px 24px 44px;
+/* ---------- 19. BARRA FIJA DE COMPRA ---------- */
+.buy-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: color-mix(in oklch, var(--surface) 96%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid var(--lilac);
-  text-align: center;
+  transform: translateY(110%);
+  transition: transform .25s ease;
 }
-.site-footer__logo {
-  height: 52px;
-  margin: 0 auto 14px;
+.buy-bar.is-visible {
+  transform: translateY(0);
 }
-.site-footer__links {
+.buy-bar__inner {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+.buy-bar__info {
+  flex: 1;
+  min-width: 0;
+}
+.buy-bar__label {
+  font-size: 13px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.buy-bar__price {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+}
+/* Deja espacio al fondo de la página de producto para que la barra fija
+   no tape el final del contenido cuando está visible. */
+.has-buy-bar {
+  padding-bottom: 80px;
+}
+
+/* ---------- 20. FORMULARIO DE CONTACTO ---------- */
+.contact-form {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--surface);
+  border-radius: var(--radius-card-sm);
+  padding: 26px 22px;
+}
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.contact-form label span {
   font-size: 14px;
-  color: var(--ink-soft);
+  font-weight: 600;
 }
-.site-footer__year {
-  font-size: 12px;
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--input-bg);
+  border: 1.5px solid var(--lilac);
+  border-radius: var(--radius-input);
+  padding: 12px 14px;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--violet);
+}
+.contact-form ::placeholder {
+  color: var(--placeholder);
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.contact-form button[type="submit"] {
+  width: 100%;
+  margin-top: 4px;
+}
+.contact-form__status {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--ink-soft);
-  opacity: 0.7;
-  margin-top: 20px;
+  min-height: 20px;
+  margin: 0;
+}
+/* Mensaje de éxito tras enviar — según el diseño, en violeta y en negrita */
+.contact-form__status.is-success {
+  color: var(--violet);
+  font-weight: 600;
 }
 
-/* ---------- 17. PLACEHOLDER de imagen ---------- */
-.is-placeholder {
-  outline: 1.5px dashed var(--violet);
-  outline-offset: -1.5px;
-}
-
-/* ---------- 18. AJUSTES PARA PANTALLAS GRANDES ---------- */
+/* ---------- 21. AJUSTES PARA PANTALLAS GRANDES ---------- */
+/* El diseño original es "mobile-first" (pensado para móvil, que es por
+   donde llegará la mayoría del tráfico vía QR). Estos ajustes son
+   mínimos, solo para que no se vea todo pegado a los bordes en un
+   ordenador — no cambian colores, tipografías ni estilo ni ensanchan
+   el contenido a un layout de escritorio. */
 @media (min-width: 640px) {
   section {
     padding-left: 32px;
@@ -471,387 +1007,4 @@ section {
     padding-left: 32px;
     padding-right: 32px;
   }
-}
-
-/* ---------- 19. FORMULARIO DE CONTACTO ---------- */
-.contact-form {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.contact-form label {
-  display: block;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 15px;
-  color: var(--ink);
-  background: var(--surface);
-  border: 1.5px solid var(--lilac);
-  border-radius: 14px;
-  padding: 12px 16px;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: var(--violet);
-}
-.contact-form textarea {
-  min-height: 130px;
-  resize: vertical;
-}
-.contact-form__status {
-  text-align: center;
-  font-size: 14px;
-  color: var(--ink-soft);
-  min-height: 20px;
-}
-
-/* ---------- 20. PÁGINA DE PRODUCTO: pasos y tarjetas seleccionables ---------- */
-.step-header {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.step-header__number {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--violet);
-  color: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.selection-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: var(--content-width);
-  margin: 0 auto;
-}
-.selection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-  max-width: var(--content-width);
-  margin: 0 auto;
-}
-
-.option-card {
-  display: block;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  font-family: 'Quicksand', sans-serif;
-  background: oklch(99% 0.006 90);
-  border: 2px solid oklch(83% 0.06 300);
-  border-radius: 20px;
-  padding: 18px;
-  transition: border-color .15s, background .15s;
-}
-.option-card[aria-checked="true"] {
-  background: oklch(96% 0.03 300);
-  border-color: var(--violet);
-  box-shadow: 0 10px 28px -18px oklch(45% 0.13 305 / .6);
-}
-.option-card:focus-visible {
-  outline: 2px solid var(--violet);
-  outline-offset: 2px;
-}
-.option-card--platform {
-  height: 100%;
-}
-.option-card__row {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-.option-card--platform .option-card__row {
-  align-items: center;
-  margin-bottom: 14px;
-}
-.option-card__dot {
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-top: 2px;
-  border: 2px solid oklch(83% 0.06 300);
-  background: transparent;
-  transition: border-color .15s, background .15s, box-shadow .15s;
-}
-.option-card--platform .option-card__dot {
-  margin-top: 0;
-}
-.option-card[aria-checked="true"] .option-card__dot {
-  border-color: var(--violet);
-  background: var(--violet);
-  box-shadow: inset 0 0 0 3px oklch(99% 0.006 90);
-}
-.option-card__body {
-  flex: 1;
-  min-width: 0;
-}
-.option-card__head {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 5px;
-}
-.option-card__label {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: var(--ink);
-}
-.option-card__tag {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: oklch(38% 0.13 308);
-  background: oklch(88% 0.05 300);
-  padding: 3px 9px;
-  border-radius: var(--radius-pill);
-}
-.option-card__who {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  margin-bottom: 8px;
-}
-.option-card__detail {
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  opacity: 0.9;
-}
-.option-card__price {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--ink);
-}
-.option-card__price-breakdown {
-  font-size: 12px;
-  color: var(--ink-soft);
-  margin: 4px 0 14px;
-}
-.option-card__details {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-.option-card__detail-row {
-  display: flex;
-  gap: 7px;
-  align-items: flex-start;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--ink-soft);
-}
-.option-card__detail-row span:first-child {
-  opacity: 0.6;
-}
-
-.step-note {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  padding-left: 36px;
-  max-width: var(--content-width);
-  margin: 0 auto 16px;
-}
-
-/* ---------- 21. RESUMEN DE COMPRA (producto.html) ---------- */
-.summary-panel {
-  max-width: 520px;
-  margin: 0 auto;
-  background: var(--violet);
-  border-radius: 28px;
-  padding: 30px 24px;
-  color: var(--cream);
-  text-align: center;
-}
-.summary-panel__eyebrow {
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.8;
-  margin: 0;
-}
-.summary-panel__title {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.5;
-  margin-top: 8px;
-}
-.summary-panel__sub {
-  font-size: 14px;
-  opacity: 0.85;
-  margin: 4px 0 18px;
-}
-.summary-panel__price {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 34px;
-  margin: 0;
-}
-.summary-panel__price-note {
-  font-size: 13px;
-  opacity: 0.8;
-  margin: 4px 0 20px;
-}
-.summary-panel__cta {
-  display: inline-block;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 15px 36px;
-  border-radius: var(--radius-pill);
-  border: 2px solid var(--cream);
-  background: transparent;
-  color: var(--cream);
-  transition: background .15s, color .15s;
-}
-.summary-panel__cta.is-ready {
-  background: var(--cream);
-  color: var(--violet-dark);
-}
-.summary-panel__note {
-  font-size: 12px;
-  opacity: 0.75;
-  margin-top: 14px;
-}
-
-/* ---------- 22. "PRESENTE EN LAS TRES VERSIONES" (producto.html) ---------- */
-.version-features {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  background: var(--surface);
-  border-radius: 24px;
-  padding: 28px 24px;
-}
-.version-features__title {
-  font-size: 20px;
-  text-align: center;
-  margin: 0 0 20px;
-}
-.version-features__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 16px;
-}
-.version-features__item {
-  text-align: center;
-}
-.version-features__glyph {
-  font-size: 26px;
-  margin-bottom: 8px;
-  display: block;
-}
-.version-features__text {
-  font-size: 14px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-  margin: 0;
-}
-.version-features__text strong {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* ---------- 23. "POR DENTRO" (fotos reales, producto.html) ---------- */
-.interior-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: var(--content-width);
-  margin: 0 auto;
-}
-.interior-figure {
-  margin: 0;
-}
-.interior-figure img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-}
-.interior-figure figcaption {
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-  margin-top: 10px;
-  text-align: center;
-}
-
-/* ---------- 24. BARRA FIJA DE COMPRA (producto.html) ---------- */
-.sticky-buy-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 30;
-  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-  background: color-mix(in oklch, oklch(99% 0.006 90) 96%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-top: 1px solid var(--lilac);
-  transform: translateY(110%);
-  transition: transform .25s ease;
-}
-.sticky-buy-bar.is-visible {
-  transform: translateY(0);
-}
-.sticky-buy-bar__inner {
-  max-width: 520px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.sticky-buy-bar__info {
-  flex: 1;
-  min-width: 0;
-}
-.sticky-buy-bar__version {
-  font-size: 13px;
-  color: var(--ink-soft);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sticky-buy-bar__price {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 19px;
-}
-.sticky-buy-bar__cta {
-  flex-shrink: 0;
-  background: var(--violet);
-  color: var(--cream);
-  font-weight: 700;
-  font-size: 15px;
-  padding: 12px 26px;
-  border-radius: var(--radius-pill);
 }

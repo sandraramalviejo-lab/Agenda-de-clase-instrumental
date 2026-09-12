@@ -6,10 +6,6 @@
   <title>Tu Viaje Musical — Materiales para alumnos y profesores de música</title>
   <meta name="description" content="Tu Viaje Musical crea materiales educativos para el aprendizaje musical: agendas de curso, repertorio y recursos para alumnos de cualquier instrumento y para sus profesores.">
 
-  <!-- Favicon: icono de la marca en la pestaña del navegador -->
-  <link rel="icon" type="image/png" href="assets/images/logo-icono.png">
-  <link rel="apple-touch-icon" href="assets/images/logo-icono.png">
-
   <!-- Tipografías de marca: Poppins (títulos) y Quicksand (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +18,7 @@
   <!-- ============ NAV ============ -->
   <nav class="nav">
     <div class="nav__brand">
-      <img class="nav__logo-img" src="assets/images/logo-horizontal.png" alt="Tu Viaje Musical">
+      <img class="nav__logo" src="assets/images/logo-horizontal.png" alt="Tu Viaje Musical">
     </div>
     <div class="nav__actions">
       <a href="contacto.html" class="nav__link">Contacto</a>
@@ -39,7 +35,9 @@
       <span class="hero__glyph hero__glyph--note2" aria-hidden="true">♫</span>
 
       <div class="hero__content">
-        <h1 class="hero__title"><img class="hero__logo" src="assets/images/logo-vertical.png" alt="Tu Viaje Musical"></h1>
+        <h1 class="hero__logo">
+          <img src="assets/images/logo-vertical.png" alt="Tu Viaje Musical">
+        </h1>
         <p class="hero__lead">Materiales pensados para acompañar el aprendizaje musical, curso a curso — para alumnos de cualquier instrumento y para quienes les enseñan.</p>
       </div>
     </section>
@@ -47,7 +45,7 @@
     <!-- ============ PRODUCTO DESTACADO ============ -->
     <section>
       <div class="card featured-card">
-        <span class="eyebrow">Disponible ahora</span>
+        <span class="eyebrow text-center">Disponible ahora</span>
 
         <div class="featured-card__img">
           <img src="assets/images/agenda-cover.jpg" alt="Portada de la Agenda Instrumental">
@@ -56,30 +54,28 @@
         <h2 class="featured-card__title">Agenda Instrumental</h2>
         <p class="featured-card__desc">La agenda del curso para alumnos de música de cualquier instrumento: calendario, repertorio, eventos y seguimiento semanal.</p>
 
-        <div class="featured-card__chips">
-          <span class="chip chip--tag">Específica Conservatorio</span>
-          <span class="chip chip--tag">Andalucía</span>
-          <span class="chip chip--tag">Nacional</span>
+        <div class="chips" style="margin-bottom:22px;">
+          <span class="chip">Edición Andalucía (3º y 4º de EEBB)</span>
+          <span class="chip">Edición Andalucía (todos los cursos)</span>
+          <span class="chip">Edición nacional</span>
         </div>
 
         <div class="text-center">
           <a href="producto.html" class="btn btn--primary">Ver las tres versiones</a>
-          <p class="featured-card__price-note">Desde 20 €</p>
+          <p class="featured-card__price">Desde 20 €</p>
         </div>
       </div>
     </section>
 
     <!-- ============ PRÓXIMAMENTE ============ -->
     <section>
-      <div class="content-wrap text-center">
-        <h2 class="section-title" style="margin-bottom:14px;">Próximamente</h2>
-        <!-- EDITAR: texto genérico sobre futuros productos -->
-        <p style="font-size:16px; line-height:1.6; color:var(--ink-soft);">Estamos preparando nuevos materiales para seguir acompañando tu viaje musical. Muy pronto habrá más por descubrir.</p>
+      <div class="upcoming">
+        <h2 class="upcoming__title">Próximamente</h2>
+        <p class="upcoming__text">Estamos preparando nuevos materiales para seguir acompañando tu viaje musical. Muy pronto habrá más por descubrir.</p>
         <div class="chips">
-          <!-- EDITAR: estas etiquetas son solo un avance, sin enlace todavía -->
-          <span class="chip">Repertorio</span>
-          <span class="chip">Lectura a vista</span>
-          <span class="chip">Improvisación</span>
+          <span class="chip chip--outline">Repertorio</span>
+          <span class="chip chip--outline">Lectura a vista</span>
+          <span class="chip chip--outline">Improvisación</span>
         </div>
       </div>
     </section>
@@ -99,7 +95,7 @@
   <footer class="site-footer">
     <img class="site-footer__logo" src="assets/images/logo-icono.png" alt="Tu Viaje Musical">
     <div class="site-footer__links">
-      <a href="producto.html">Agenda Instrumental</a>
+      <a href="producto.html">Agenda</a>
       <a href="contacto.html">Contacto</a>
     </div>
     <p class="site-footer__year">© <span id="anio-actual">2026</span> Tu Viaje Musical</p>

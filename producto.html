@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda Instrumental — Tu Viaje Musical</title>
-  <meta name="description" content="Agenda Instrumental: elige tu versión (Conservatorio, Andalucía o Nacional) y la plataforma (Lulu o Amazon) para tu agenda de curso de música.">
-
-  <link rel="icon" type="image/png" href="assets/images/logo-icono.png">
-  <link rel="apple-touch-icon" href="assets/images/logo-icono.png">
+  <meta name="description" content="Agenda Instrumental: la agenda de curso para alumnos de música de cualquier instrumento, con calendario, repertorio, eventos y seguimiento semanal. Elige tu versión y dónde imprimirla.">
 
   <!-- Tipografías de marca: Poppins (títulos) y Quicksand (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,24 +13,25 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="has-sticky-bar">
+<body class="has-buy-bar">
 
   <!-- ============ NAV ============ -->
-  <nav class="nav" style="z-index:20;">
+  <nav class="nav">
     <a href="index.html" class="nav__brand">
-      <img class="nav__logo-img" src="assets/images/logo-horizontal.png" alt="Tu Viaje Musical">
+      <img class="nav__logo" src="assets/images/logo-horizontal.png" alt="Tu Viaje Musical">
     </a>
-    <a href="contacto.html" class="nav__link">Contacto</a>
+    <div class="nav__actions">
+      <a href="contacto.html" class="nav__link">Contacto</a>
+    </div>
   </nav>
 
   <main>
     <!-- ============ HERO DE PRODUCTO ============ -->
     <section class="product-hero">
-      <div class="hero__blob" aria-hidden="true" style="top:-50px; left:-70px; width:220px; height:220px; background:radial-gradient(circle, var(--lilac), transparent 70%); opacity:0.8;"></div>
-      <span class="hero__glyph" aria-hidden="true" style="top:20px; right:28px; font-size:56px; color:var(--aqua); opacity:0.35;">♫</span>
+      <div class="product-hero__blob" aria-hidden="true"></div>
+      <span class="product-hero__glyph" aria-hidden="true">♫</span>
 
       <div class="product-hero__img-frame">
-        <!-- EDITAR: portada real de la agenda -->
         <img src="assets/images/agenda-cover.jpg" alt="Portada de la Agenda Instrumental">
       </div>
 
@@ -42,169 +40,107 @@
         <h1 class="product-hero__title">Agenda Instrumental</h1>
         <p class="product-hero__desc">Calendario del curso, repertorio, eventos y seguimiento semanal.</p>
         <a href="#elegir" class="btn btn--primary btn--large">Elegir mi agenda</a>
-        <p class="featured-card__price-note">Desde 20 €</p>
+        <p class="product-hero__price">Desde 20 €</p>
       </div>
     </section>
 
     <!-- ============ NACE EN EL AULA ============ -->
-    <section>
-      <div class="content-wrap text-center">
-        <h2 class="section-title">Nace en el aula</h2>
-        <p style="font-size:16px; line-height:1.7; color:var(--ink-soft); margin-bottom:16px;">Esta agenda nace de la necesidad de que los alumnos tengan todo apuntado en un mismo sitio: qué están estudiando, para cuándo, y cómo van avanzando.</p>
-        <p style="font-size:16px; line-height:1.7; color:var(--ink-soft);">Desde el primer día de curso queda marcado en el calendario qué toca aprender y cuándo. Ver de un vistazo cuántas semanas quedan para conseguirlo cambia por completo la forma de planificarse.</p>
+    <section class="narrative">
+      <div class="narrative__wrap">
+        <h2 class="narrative__title">Nace en el aula</h2>
+        <p class="narrative__text">Esta agenda nace de la necesidad de que los alumnos tengan todo apuntado en un mismo sitio: qué están estudiando, para cuándo, y cómo van avanzando.</p>
+        <p class="narrative__text">Desde el primer día de curso queda marcado en el calendario qué toca aprender y cuándo. Ver de un vistazo cuántas semanas quedan para conseguirlo cambia por completo la forma de planificarse.</p>
       </div>
     </section>
 
     <!-- ============ PRESENTE EN LAS TRES VERSIONES ============ -->
-    <section>
-      <div class="version-features">
-        <h2 class="version-features__title">Presente en las tres versiones</h2>
-        <div class="version-features__grid">
-          <div class="version-features__item">
-            <span class="version-features__glyph" aria-hidden="true">📅</span>
-            <p class="version-features__text"><strong>Calendario</strong><br>de septiembre a junio</p>
+    <section class="highlights">
+      <div class="highlights__card">
+        <h2 class="highlights__title">Presente en las tres versiones</h2>
+        <div class="highlights__grid">
+          <div class="highlight">
+            <div class="highlight__glyph" aria-hidden="true">📅</div>
+            <p class="highlight__text"><strong>Calendario</strong><br>de septiembre a junio</p>
           </div>
-          <div class="version-features__item">
-            <span class="version-features__glyph" aria-hidden="true">♪</span>
-            <p class="version-features__text"><strong>Repertorio</strong><br>obras, autores y fechas</p>
+          <div class="highlight">
+            <div class="highlight__glyph" aria-hidden="true">♪</div>
+            <p class="highlight__text"><strong>Repertorio</strong><br>obras, autores y fechas</p>
           </div>
-          <div class="version-features__item">
-            <span class="version-features__glyph" aria-hidden="true">✦</span>
-            <p class="version-features__text"><strong>Eventos</strong><br>audiciones y exámenes</p>
+          <div class="highlight">
+            <div class="highlight__glyph" aria-hidden="true">✦</div>
+            <p class="highlight__text"><strong>Eventos</strong><br>audiciones y exámenes</p>
           </div>
-          <div class="version-features__item">
-            <span class="version-features__glyph" aria-hidden="true">✎</span>
-            <p class="version-features__text"><strong>Seguimiento</strong><br>hojas de clase semanales</p>
+          <div class="highlight">
+            <div class="highlight__glyph" aria-hidden="true">✎</div>
+            <p class="highlight__text"><strong>Seguimiento</strong><br>hojas de clase semanales</p>
           </div>
-          <div class="version-features__item">
-            <span class="version-features__glyph" aria-hidden="true">🎵</span>
-            <p class="version-features__text"><strong>Apuntes musicales</strong><br>papel pautado para tus ideas</p>
+          <div class="highlight">
+            <div class="highlight__glyph" aria-hidden="true">🎵</div>
+            <p class="highlight__text"><strong>Apuntes musicales</strong><br>papel pautado para tus ideas</p>
           </div>
-          <div class="version-features__item">
-            <span class="version-features__glyph" aria-hidden="true">🎯</span>
-            <p class="version-features__text"><strong>Herramientas de estudio</strong><br>trabajadas junto a tu profesor/a</p>
+          <div class="highlight">
+            <div class="highlight__glyph" aria-hidden="true">🎯</div>
+            <p class="highlight__text"><strong>Herramientas de estudio</strong><br>trabajadas junto a tu profesor/a</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============ POR DENTRO ============ -->
-    <section>
-      <h2 class="section-title">Por dentro</h2>
-      <div class="interior-grid">
-        <figure class="interior-figure">
-          <img src="assets/images/interior-plan-clases.jpeg" alt="Páginas del contrato para el 10 y el plan de clases de instrumento, rellenadas a mano">
-          <figcaption>Contrato para el 10 y plan de clases de instrumento</figcaption>
-        </figure>
-        <figure class="interior-figure">
-          <img src="assets/images/interior-seguimiento.jpeg" alt="Páginas de otras asignaturas y seguimiento semanal con autoevaluación y rincón de la escucha">
-          <figcaption>Seguimiento semanal, autoevaluación y rincón de la escucha</figcaption>
-        </figure>
+    <section class="inside">
+      <div class="inside__wrap">
+        <h2 class="inside__title">Por dentro</h2>
+        <div class="inside__grid">
+          <figure>
+            <img src="assets/images/interior-plan-clases.jpeg" alt="Páginas del contrato para el 10 y el plan de clases de instrumento, rellenadas a mano">
+            <figcaption>Contrato para el 10 y plan de clases de instrumento</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/images/interior-seguimiento.jpeg" alt="Páginas de otras asignaturas y seguimiento semanal con autoevaluación y rincón de la escucha">
+            <figcaption>Seguimiento semanal, autoevaluación y rincón de la escucha</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
     <!-- ============ PASO 1 — ELIGE TU VERSIÓN ============ -->
-    <section id="elegir" style="scroll-margin-top:80px;">
-      <div class="step-header" style="max-width:520px; margin-left:auto; margin-right:auto;">
-        <span class="step-header__number" aria-hidden="true">1</span>
-        <h2 class="step-header__title section-title" style="margin:0; text-align:left;">Elige tu versión</h2>
-      </div>
+    <section id="elegir" class="step" style="scroll-margin-top:80px;">
+      <div class="step__wrap">
+        <div class="step__head">
+          <span class="step__number" aria-hidden="true">1</span>
+          <h2 class="step__title">Elige tu versión</h2>
+        </div>
 
-      <!-- EDITAR: los datos de cada versión (título, público, enlaces de compra)
-           están en js/main.js, dentro de la lista VERSIONS -->
-      <div class="selection-group" id="version-group" role="radiogroup" aria-label="Elige tu versión">
-        <button type="button" class="option-card" role="radio" aria-checked="false" data-id="conservatorio">
-          <div class="option-card__row">
-            <span class="option-card__dot" aria-hidden="true"></span>
-            <div class="option-card__body">
-              <div class="option-card__head">
-                <span class="option-card__label">3º y 4º EE.BB.</span>
-                <span class="option-card__tag">ANDALUCÍA</span>
-              </div>
-              <p class="option-card__who">Para alumnos de 3º y 4º de Enseñanzas Básicas en conservatorios de Andalucía.</p>
-              <p class="option-card__detail">Calendario escolar de Andalucía, con espacio para anotar las actividades de Lenguaje musical, Agrupaciones musicales y Coro.</p>
-            </div>
-          </div>
-        </button>
-        <button type="button" class="option-card" role="radio" aria-checked="false" data-id="andalucia">
-          <div class="option-card__row">
-            <span class="option-card__dot" aria-hidden="true"></span>
-            <div class="option-card__body">
-              <div class="option-card__head">
-                <span class="option-card__label">Todos los cursos</span>
-                <span class="option-card__tag">ANDALUCÍA</span>
-              </div>
-              <p class="option-card__who">Para cualquier curso e instrumento, dentro de Andalucía.</p>
-              <p class="option-card__detail">Calendario escolar de Andalucía, con espacio abierto para anotar las actividades del resto de asignaturas.</p>
-            </div>
-          </div>
-        </button>
-        <button type="button" class="option-card" role="radio" aria-checked="false" data-id="nacional">
-          <div class="option-card__row">
-            <span class="option-card__dot" aria-hidden="true"></span>
-            <div class="option-card__body">
-              <div class="option-card__head">
-                <span class="option-card__label">Todos los cursos</span>
-                <span class="option-card__tag">Nacional</span>
-              </div>
-              <p class="option-card__who">Para cualquier curso e instrumento, en cualquier punto de España.</p>
-              <p class="option-card__detail">Calendario del curso con festivos nacionales. Espacio abierto para anotar las actividades del resto de asignaturas.</p>
-            </div>
-          </div>
-        </button>
+        <!-- EDITAR: las tarjetas se generan desde js/producto.js
+             (arrays VERSIONS y PLATFORMS) — así los precios, textos y
+             enlaces de compra viven en un único archivo fácil de editar. -->
+        <div class="sel-group" id="version-group" role="radiogroup" aria-label="Elige tu versión"></div>
       </div>
     </section>
 
     <!-- ============ PASO 2 — ELIGE DÓNDE IMPRIMIRLA ============ -->
-    <section>
-      <div class="step-header" style="max-width:520px; margin-left:auto; margin-right:auto;">
-        <span class="step-header__number" aria-hidden="true">2</span>
-        <h2 class="step-header__title section-title" style="margin:0; text-align:left;">Elige dónde imprimirla</h2>
-      </div>
-      <p class="step-note">Cada una de las tres versiones esta disponible en dos plataformas diferentes, cambia el encuadernado, el precio y el plazo.</p>
+    <section class="step">
+      <div class="step__wrap">
+        <div class="step__head">
+          <span class="step__number" aria-hidden="true">2</span>
+          <h2 class="step__title">Elige dónde imprimirla</h2>
+        </div>
+        <p class="step__intro">Cada una de las tres versiones esta disponible en dos plataformas diferentes, cambia el encuadernado, el precio y el plazo.</p>
 
-      <!-- EDITAR: los datos de cada plataforma (precio, plazos) están en
-           js/main.js, dentro de la lista PLATFORMS -->
-      <div class="selection-grid" id="platform-group" role="radiogroup" aria-label="Elige dónde imprimirla">
-        <button type="button" class="option-card option-card--platform" role="radio" aria-checked="false" data-id="lulu">
-          <div class="option-card__row">
-            <span class="option-card__dot" aria-hidden="true"></span>
-            <span class="option-card__label">Lulu</span>
-          </div>
-          <p class="option-card__price">27,57 €</p>
-          <p class="option-card__price-breakdown">20 € + 7,57 € de envío</p>
-          <div class="option-card__details">
-            <div class="option-card__detail-row"><span aria-hidden="true">◷</span><span>Llega en unas 2 semanas</span></div>
-            <div class="option-card__detail-row"><span aria-hidden="true">▤</span><span>Encuadernación en espiral</span></div>
-            <div class="option-card__detail-row"><span aria-hidden="true">✦</span><span>Se abre plana: cómoda para escribir</span></div>
-          </div>
-        </button>
-        <button type="button" class="option-card option-card--platform" role="radio" aria-checked="false" data-id="kdp">
-          <div class="option-card__row">
-            <span class="option-card__dot" aria-hidden="true"></span>
-            <span class="option-card__label">Amazon</span>
-          </div>
-          <p class="option-card__price">20 €</p>
-          <p class="option-card__price-breakdown">Envío gratis con Prime</p>
-          <div class="option-card__details">
-            <div class="option-card__detail-row"><span aria-hidden="true">◷</span><span>Llega en 4-5 días</span></div>
-            <div class="option-card__detail-row"><span aria-hidden="true">▤</span><span>Encuadernación encolada</span></div>
-            <div class="option-card__detail-row"><span aria-hidden="true">✦</span><span>Acabado tipo libro</span></div>
-          </div>
-        </button>
+        <div class="sel-group sel-group--grid" id="platform-group" role="radiogroup" aria-label="Elige dónde imprimirla"></div>
       </div>
     </section>
 
-    <!-- ============ RESUMEN DE COMPRA ============ -->
-    <section>
-      <div class="summary-panel">
-        <p class="summary-panel__eyebrow">Tu selección</p>
-        <p class="summary-panel__title" id="summary-title">Elige una versión arriba</p>
-        <p class="summary-panel__sub" id="summary-sub">Y después, dónde quieres imprimirla</p>
-        <p class="summary-panel__price" id="summary-price">Desde 20 €</p>
-        <p class="summary-panel__price-note" id="summary-price-note">según versión y plataforma</p>
-        <a href="#elegir" id="summary-cta" class="summary-panel__cta">Elegir versión</a>
-        <p class="summary-panel__note" id="summary-note"></p>
+    <!-- ============ PANEL DE RESUMEN ============ -->
+    <section class="summary">
+      <div class="summary__panel">
+        <p class="summary__eyebrow">Tu selección</p>
+        <p class="summary__title" id="summary-title">Elige una versión arriba</p>
+        <p class="summary__sub" id="summary-sub">Y después, dónde quieres imprimirla</p>
+        <p class="summary__price" id="summary-price">Desde 20 €</p>
+        <p class="summary__price-note" id="summary-price-note">según versión y plataforma</p>
+        <a href="#elegir" id="summary-cta" class="btn btn--on-violet">Elegir versión</a>
+        <p class="summary__note" id="summary-note"></p>
       </div>
     </section>
 
@@ -212,8 +148,8 @@
     <section>
       <div class="card who-card">
         <h2 class="who-card__title">Para quién es</h2>
-        <p style="font-size:16px; line-height:1.65; color:var(--ink-soft); text-align:left; margin-bottom:14px;">Para alumnos de música de cualquier instrumento — no solo piano — tanto niños como adultos. La versión Específica Conservatorio está pensada al detalle para 3º y 4º de Enseñanzas Básicas en Andalucía; las otras dos sirven para cualquier curso y nivel.</p>
-        <p style="font-size:16px; line-height:1.65; color:var(--ink-soft); text-align:left;">También es un buen recurso para profesores que quieran recomendarla a sus alumnos o usarla en su propia enseñanza.</p>
+        <p class="who-card__text">Para alumnos de música de cualquier instrumento — no solo piano — tanto niños como adultos. La versión Específica Conservatorio está pensada al detalle para 3º y 4º de Enseñanzas Básicas en Andalucía; las otras dos sirven para cualquier curso y nivel.</p>
+        <p class="who-card__text">También es un buen recurso para profesores que quieran recomendarla a sus alumnos o usarla en su propia enseñanza.</p>
       </div>
     </section>
 
@@ -223,7 +159,7 @@
       <div class="faq-list">
         <details class="faq-item">
           <summary>¿Qué versión me conviene?</summary>
-          <p>Si estudias 3º o 4º de Enseñanzas Básicas en un conservatorio de Andalucía, la <strong>Agenda para alumnos de 3o y 4o</strong> es la más cómoda: tiene un apartado para Lenguaje musical, Agrupaciones musicales y Coro por cada semana. Si estudias en Andalucía pero en otro curso, la versión <strong>Andalucía</strong> te deja escribir tus propias asignaturas. Fuera de Andalucía, la <strong>Nacional</strong>, con calendario sin festivos regionales.</p>
+          <p>Si estudias 3º o 4º de Enseñanzas Básicas en un conservatorio de Andalucía, la <strong>Agenda para alumnos de 3º y 4º</strong> es la más cómoda: tiene un apartado para Lenguaje musical, Agrupaciones musicales y Coro por cada semana. Si estudias en Andalucía pero en otro curso, la versión <strong>Andalucía</strong> te deja escribir tus propias asignaturas. Fuera de Andalucía, la <strong>Nacional</strong>, con calendario sin festivos regionales.</p>
         </details>
         <details class="faq-item">
           <summary>¿Qué encuadernación es mejor?</summary>
@@ -260,16 +196,21 @@
   </footer>
 
   <!-- ============ BARRA FIJA DE COMPRA ============ -->
-  <div class="sticky-buy-bar" id="sticky-buy-bar" inert>
-    <div class="sticky-buy-bar__inner">
-      <div class="sticky-buy-bar__info">
-        <div class="sticky-buy-bar__version" id="sticky-version"></div>
-        <div class="sticky-buy-bar__price" id="sticky-price"></div>
+  <!-- Aparece deslizándose solo cuando hay versión + plataforma elegidas
+       y el enlace de compra está disponible (ver js/producto.js). Se
+       marca "inert" mientras está oculta para que no quede en el orden
+       de tabulación. -->
+  <div class="buy-bar" id="buy-bar" aria-hidden="true">
+    <div class="buy-bar__inner">
+      <div class="buy-bar__info">
+        <div class="buy-bar__label" id="buy-bar-label"></div>
+        <div class="buy-bar__price" id="buy-bar-price"></div>
       </div>
-      <a href="#" id="sticky-cta" class="sticky-buy-bar__cta" target="_blank" rel="noopener noreferrer"></a>
+      <a href="#elegir" id="buy-bar-cta" class="btn btn--bar"></a>
     </div>
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/producto.js"></script>
 </body>
 </html>

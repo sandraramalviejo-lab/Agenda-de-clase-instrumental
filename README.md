@@ -1,21 +1,25 @@
 # Tu Viaje Musical — sitio web
 
 Sitio web de la marca de materiales educativos de música **Tu Viaje Musical**.
-Dos páginas: **Inicio** (`index.html`) y la ficha de producto de la
-**Agenda Instrumental** (`producto.html`).
+Tres páginas: **Inicio** (`index.html`), la ficha de producto de la
+**Agenda Instrumental** (`producto.html`, con el selector de versión y
+plataforma de compra) y **Contacto** (`contacto.html`).
 
 Es HTML + CSS + JS "de toda la vida", sin frameworks ni instalación de
 nada — puedes abrirlo y editarlo con cualquier editor de texto.
 
 ```
-├── index.html              → Página de Inicio
-├── producto.html            → Página de producto (Agenda Instrumental)
+├── index.html                 → Página de Inicio
+├── producto.html               → Página de producto (Agenda Instrumental)
+├── contacto.html                → Página de contacto (formulario)
+├── gracias.html                  → Página de agradecimiento tras enviar el formulario
 ├── css/
-│   └── style.css            → Todos los estilos (colores, tipografías, espaciados)
+│   └── style.css                 → Todos los estilos (colores, tipografías, espaciados)
 ├── js/
-│   └── main.js               → Un par de detalles pequeños (no imprescindible)
+│   ├── main.js                    → Año del footer + envío del formulario de contacto
+│   └── producto.js                 → Datos y lógica del selector de versión/plataforma
 └── assets/
-    └── images/                → Fotos y logo (ahora mismo son placeholders)
+    └── images/                      → Logos, portada de la agenda y fotos de interior
 ```
 
 ---
@@ -47,32 +51,37 @@ para encontrar rápidamente qué tocar.
 
 | Quiero cambiar... | Archivo | Dónde |
 |---|---|---|
-| Textos (títulos, descripciones, "Sobre mí", FAQ...) | `index.html` / `producto.html` | Busca `EDITAR` |
-| El **precio** de la agenda | `producto.html` | Busca `[PRECIO]` (aparece 2 veces: botón del hero y sección "Comprar") |
-| El **enlace de Lulu** | `producto.html` | Busca `Comprar en Lulu`, cambia el `href="#"` por tu URL de Lulu |
-| **Email / Instagram** del footer | `index.html` y `producto.html` | Busca `PLACEHOLDER: email real` |
-| **Fotos** (portada, galería, logo) | `assets/images/` | Ver punto siguiente ⬇️ |
+| Textos (títulos, descripciones, "Sobre mí", FAQ...) | `index.html` / `producto.html` / `contacto.html` | Busca `EDITAR` |
+| Precios, textos del selector, o los **enlaces de compra** (Lulu / Amazon) de cada versión | `js/producto.js` | Arrays `VERSIONS` y `PLATFORMS`, al principio del archivo |
+| **Fotos** (portada, logo, interior) | `assets/images/` | Ver punto siguiente ⬇️ |
 | Colores, tipografías, espaciados | `css/style.css` | Los colores de marca están arriba del todo, en `:root` |
+| A qué correo llegan los mensajes del formulario | Panel de Forminit (ver `js/main.js`, constante `FORMINIT_FORM_ID`) | — |
 
 ### Cómo sustituir las fotos
 
-Ahora mismo las imágenes son placeholders (recuadros punteados con un
-icono y una etiqueta) para que puedas ver el diseño completo sin tener
-las fotos todavía. Hay dos formas de ponerlas reales:
+Sube tu foto a `assets/images/` y cambia el `src="assets/images/..."`
+de esa imagen en el HTML correspondiente para que apunte a tu archivo
+nuevo (o, más sencillo, sustituye el archivo existente manteniendo el
+mismo nombre).
 
-1. **La más fácil:** cuando tengas la foto, renómbrala exactamente
-   igual que el archivo que sustituye (por ejemplo, tu foto de portada
-   pásala a `.jpg` y llámala `portada-agenda-placeholder.jpg`) y
-   además cambia la extensión en el `src` del HTML correspondiente
-   (busca `EDITAR` justo encima de cada `<img>`).
-2. O simplemente sube tu foto a `assets/images/` con el nombre que
-   quieras y cambia el `src="assets/images/..."` de esa imagen en el
-   HTML para que apunte a tu archivo nuevo.
+Imágenes actuales:
+- `logo-horizontal.png` — logo del menú (Inicio, Agenda, Contacto)
+- `logo-vertical.png` — logo grande del hero de Inicio
+- `logo-icono.png` — logo del footer (las tres páginas)
+- `logo-blanco.png` — versión del logo para fondos oscuros (no se usa hoy)
+- `agenda-cover.jpg` — portada de la Agenda Instrumental (Inicio y producto)
+- `interior-plan-clases.jpeg` / `interior-seguimiento.jpeg` — fotos de la sección "Por dentro" en `producto.html`
 
-Imágenes a sustituir:
-- `assets/images/logo-placeholder.svg` — logo de la marca (aparece en el menú de ambas páginas)
-- `assets/images/portada-agenda-placeholder.svg` — portada de la agenda (Inicio y producto)
-- `assets/images/galeria-1-placeholder.svg` a `galeria-4-placeholder.svg` — páginas interiores de la agenda (solo en producto.html)
+### El selector de versión y plataforma (`producto.html`)
+
+La parte interactiva de la web vive en `js/producto.js`. Todo lo que
+ve la persona que compra (precios, textos del panel de resumen, la
+barra fija inferior) se calcula a partir de dos elecciones: la
+**versión** (Específica Conservatorio / Andalucía / Nacional) y la
+**plataforma** (Lulu / Amazon). Para cambiar un precio, un texto o
+añadir el enlace de Amazon que falte en alguna versión, edita
+únicamente los arrays `VERSIONS` y `PLATFORMS` de ese archivo — no
+hace falta tocar el HTML ni el CSS.
 
 ---
 
@@ -176,11 +185,12 @@ para el dominio raíz:
 
 ---
 
-## Pendiente de completar (marcado en el código)
+## Pendiente de completar
 
-- [ ] Precio real de la agenda (`[PRECIO]` en `producto.html`)
-- [ ] Enlace real de Lulu (`href="#"` junto a "Comprar en Lulu")
-- [ ] Email e Instagram reales (footer de ambas páginas)
-- [ ] Fotos reales: portada, logo y las 4 imágenes de la galería "Por dentro"
-- [ ] Tamaño/dimensiones exactas de la agenda (FAQ en `producto.html`)
-- [ ] Zonas de envío y plazos (FAQ en `producto.html`)
+- [ ] Enlaces de Amazon KDP para las versiones **Andalucía** y **Nacional**
+      (hoy están a `null` en `js/producto.js` → `VERSIONS[].links.kdp`;
+      mientras tanto la web muestra "Aún no disponible en Amazon" y ofrece
+      Lulu como alternativa).
+- [ ] Confirmar a qué dirección de correo deben llegar los mensajes del
+      formulario de contacto (configuración de Forminit).
+- [ ] Zonas de envío y plazos fuera de España, si aplica.
