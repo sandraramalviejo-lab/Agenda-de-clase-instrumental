@@ -295,14 +295,21 @@ section {
   margin: 0 auto;
   text-align: center;
 }
-.hero__logo {
-  margin: 0 0 22px;
-}
-.hero__logo img {
+/* Icono decorativo sobre el título (el texto "Tu Viaje Musical" va
+   aparte, como texto real de verdad — así en móvil no se aprieta como
+   pasaba cuando el nombre venía dibujado dentro de la imagen). */
+.hero__icon {
+  display: block;
   width: 100%;
-  max-width: 175px;
+  max-width: 120px;
   height: auto;
-  margin: 0 auto;
+  margin: 0 auto 22px;
+}
+.hero__title {
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  margin: 0 0 22px;
 }
 .hero__lead {
   font-size: 19px;
@@ -348,7 +355,7 @@ section {
 .featured-card__price {
   font-size: 14px;
   color: var(--ink-soft);
-  margin-top: 12px;
+  margin-top: 18px;
 }
 
 /* ---------- 8. CHIPS ---------- */
