@@ -54,7 +54,7 @@
       detail: 'Calendario del curso con festivos nacionales. Espacio abierto para anotar las actividades del resto de asignaturas.',
       links: {
         lulu: 'https://www.lulu.com/shop/tu-viaje-musical/agenda-instrumental/paperback/product-2mgjz9n.html',
-        kdp: null // EDITAR: pendiente de publicar en Amazon KDP
+        kdp: 'https://www.amazon.es/dp/B0HJN2N8PF'
       }
     }
   ];
