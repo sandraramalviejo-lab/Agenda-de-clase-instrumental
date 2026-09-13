@@ -190,6 +190,6 @@ para el dominio raíz:
 - [x] Enlaces de Amazon KDP para las versiones **Andalucía** y **Nacional**
       — las 6 combinaciones (3 versiones × 2 plataformas) ya tienen enlace
       real en `js/producto.js` → `VERSIONS[].links.kdp`.
-- [ ] Confirmar a qué dirección de correo deben llegar los mensajes del
-      formulario de contacto (configuración de Forminit).
+- [x] El formulario de contacto ya envía los mensajes correctamente al
+      correo de la autora — comprobado en producción.
 - [ ] Zonas de envío y plazos fuera de España, si aplica.
